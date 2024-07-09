@@ -1,0 +1,35 @@
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navbar {
+  flex-shrink: 0;
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 200px; /* Adjust as necessary */
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px; /* Adjust as necessary */
+  overflow-y: auto;
+  min-height: 90vh !important;
+}
+
+.footer {
+  flex-shrink: 0;
+}
