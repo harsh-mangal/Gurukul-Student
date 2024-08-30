@@ -9,6 +9,7 @@ const Classes = () => {
         </header>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Timetable */}
+          <Link to="/school-timing">
           <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
             <div className="flex items-center mb-4">
               <i className="fas fa-table text-blue-800 text-3xl mr-3"></i>
@@ -17,8 +18,10 @@ const Classes = () => {
             <p className="text-gray-700">View your class timetable for the week.</p>
             {/* Add content related to the timetable here */}
           </div>
+          </Link>
 
           {/* Calendar */}
+          <Link to="/school-timing">
           <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
             <div className="flex items-center mb-4">
               <i className="fas fa-calendar-alt text-blue-800 text-3xl mr-3"></i>
@@ -27,6 +30,7 @@ const Classes = () => {
             <p className="text-gray-700">Check out your academic calendar for important dates.</p>
             {/* Add content related to the calendar here */}
           </div>
+          </Link>
         </div>
       </div>
     </div>
