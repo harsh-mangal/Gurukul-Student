@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Classes = () => {
   return (
@@ -9,7 +10,7 @@ const Classes = () => {
         </header>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Timetable */}
-          <Link to="/school-timing">
+          <Link to="/school-timetable">
           <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
             <div className="flex items-center mb-4">
               <i className="fas fa-table text-blue-800 text-3xl mr-3"></i>
@@ -21,7 +22,7 @@ const Classes = () => {
           </Link>
 
           {/* Calendar */}
-          <Link to="/school-timing">
+          <Link to="/calendar">
           <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
             <div className="flex items-center mb-4">
               <i className="fas fa-calendar-alt text-blue-800 text-3xl mr-3"></i>

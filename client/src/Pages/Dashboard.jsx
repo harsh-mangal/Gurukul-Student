@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   return (
@@ -9,40 +10,48 @@ const Dashboard = () => {
         </header>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Academic Performance */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-book text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Academic Performance</h2>
+          <Link to="/academic-performance">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-book text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Academic Performance</h2>
+              </div>
+              <p className="text-gray-700">View and analyze your grades and academic progress.</p>
             </div>
-            <p className="text-gray-700">View and analyze your grades and academic progress.</p>
-          </div>
+          </Link>
 
           {/* Notifications and Announcements */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-bell text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Notifications & Announcements</h2>
+          <Link to="/notifications-announcements">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-bell text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Notifications & Announcements</h2>
+              </div>
+              <p className="text-gray-700">Stay updated with the latest notifications and announcements.</p>
             </div>
-            <p className="text-gray-700">Stay updated with the latest notifications and announcements.</p>
-          </div>
+          </Link>
 
           {/* Events */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-calendar-alt text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Events</h2>
+          <Link to="/event-activities">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-calendar-alt text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Events</h2>
+              </div>
+              <p className="text-gray-700">Check out the upcoming events and activities.</p>
             </div>
-            <p className="text-gray-700">Check out the upcoming events and activities.</p>
-          </div>
+          </Link>
 
           {/* Deadlines */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-clock text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Deadlines</h2>
+          <Link to="/deadlines">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-clock text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Deadlines</h2>
+              </div>
+              <p className="text-gray-700">Keep track of important deadlines and submissions.</p>
             </div>
-            <p className="text-gray-700">Keep track of important deadlines and submissions.</p>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

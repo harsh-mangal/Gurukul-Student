@@ -34,6 +34,35 @@ const Layout = () => {
               <Route path="/student/feemanagement" element={<FeeManagement />} />
               <Route path="/student/profile" element={<Profile />} />
               <Route path="/student/support" element={<Support />} />
+              {/* Dashborad */}
+              <Route path="/academic-performance" element={<Classes />} />
+              <Route path="/notifications-announcements" element={<Classes />} />
+              <Route path="/event-activities" element={<Classes />} />
+              <Route path="/deadlines" element={<Classes />} />
+              {/* Classes */}
+              <Route path="/school-timetable" element={<Classes />} />
+              <Route path="/calendar" element={<Classes />} />
+              {/* Courses */}
+              <Route path="/course-materials" element={<Classes />} />
+              <Route path="/subjects" element={<Classes />} />
+              <Route path="/student-assignments" element={<Classes />} />
+              <Route path="/student-grades" element={<Classes />} />
+              {/*Exam Result */}
+              <Route path="/exam-datesheet" element={<Classes />} />
+              <Route path="/exam-result" element={<Classes />} />
+              <Route path="/subjectwise-grades" element={<Classes />} />
+              <Route path="/previous-year" element={<Classes />} />
+              <Route path="/exam-paper" element={<Classes />} />
+              {/* Fee managemenet */}
+              <Route path="/fee-structure" element={<Classes />} />
+              <Route path="/payment-status" element={<Classes />} />
+              <Route path="/pending-fee" element={<Classes />} />
+              <Route path="/online-payment" element={<Classes />} />
+              {/* Profile */}
+              <Route path="/view-profile" element={<Classes />} />
+              <Route path="/update-profile" element={<Classes />} />
+              <Route path="/student-attendance" element={<Classes />} />
+              <Route path="/change-password" element={<Classes />} />
             </Routes>
           </div>
         </div>

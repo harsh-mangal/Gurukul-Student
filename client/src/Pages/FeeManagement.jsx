@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FeeManagement = () => {
   return (
@@ -9,44 +10,52 @@ const FeeManagement = () => {
         </header>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Fee Structure */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-rupee-sign text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Fee Structure</h2>
+          <Link to="/fee-structure">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-rupee-sign text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Fee Structure</h2>
+              </div>
+              <p className="text-gray-700">View detailed fee structure for your courses.</p>
+              {/* Add content related to fee structure here */}
             </div>
-            <p className="text-gray-700">View detailed fee structure for your courses.</p>
-            {/* Add content related to fee structure here */}
-          </div>
+          </Link>
 
           {/* Payment Status */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-money-bill-wave text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Payment Status</h2>
+          <Link to="/payment-status">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-money-bill-wave text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Payment Status</h2>
+              </div>
+              <p className="text-gray-700">Check the status of your fee payments.</p>
+              {/* Add content related to payment status here */}
             </div>
-            <p className="text-gray-700">Check the status of your fee payments.</p>
-            {/* Add content related to payment status here */}
-          </div>
+          </Link>
 
           {/* Left Fees */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-coins text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Left Fees</h2>
+          <Link to="/pending-fee">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-coins text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Pending Fees</h2>
+              </div>
+              <p className="text-gray-700">View the remaining fees to be paid.</p>
+              {/* Add content related to left fees here */}
             </div>
-            <p className="text-gray-700">View the remaining fees to be paid.</p>
-            {/* Add content related to left fees here */}
-          </div>
+          </Link>
 
           {/* Online Fee Payment */}
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-credit-card text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Online Fee Payment</h2>
+          <Link to="/online-payment">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-credit-card text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Online Fee Payment</h2>
+              </div>
+              <p className="text-gray-700">Pay your fees securely online.</p>
+              {/* Add content related to online fee payment here */}
             </div>
-            <p className="text-gray-700">Pay your fees securely online.</p>
-            {/* Add content related to online fee payment here */}
-          </div>
+          </Link>
         </div>
       </div>
     </div>
