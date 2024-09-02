@@ -45,18 +45,6 @@ const ExamResults = () => {
             </div>
           </Link>
 
-          {/* Previous Year Solutions */}
-          <Link to="/previous-year">
-            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-              <div className="flex items-center mb-4">
-                <i className="fas fa-file-alt text-blue-800 text-3xl mr-3"></i>
-                <h2 className="text-2xl font-semibold text-black">Previous Year Solutions</h2>
-              </div>
-              <p className="text-gray-700">Access solutions from previous years' exams.</p>
-              {/* Add content related to previous year solutions here */}
-            </div>
-          </Link>
-
           {/* Papers */}
           <Link to="/exam-paper">
             <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">

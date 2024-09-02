@@ -21,18 +21,6 @@ const Profile = () => {
           </div>
           </Link>
 
-          {/* Update Profile */}
-          <Link to="/update-profile">
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-user-edit text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Update Profile</h2>
-            </div>
-            <p className="text-gray-700">Update your personal information.</p>
-            {/* Add content related to update profile here */}
-          </div>
-          </Link>
-
           {/* Attendance */}
           <Link to="/student-attendance">
           <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">

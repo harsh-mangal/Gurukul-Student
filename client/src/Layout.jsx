@@ -11,6 +11,28 @@ import Support from "./Pages/Support";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
+import AcademicPerformance from "./Dashboard/AcademicPerformance";
+import Notification from "./Dashboard/Notification";
+import Events from "./Dashboard/Events";
+import Deadlines from "./Dashboard/Deadlines";
+import Timetable from "./Classes/Timetable";
+import Calendar from "./Classes/Calendar";
+import CourseMaterials from "./Couses/CourseMaterials";
+import Subjects from "./Couses/Subjects";
+import Assignments from "./Couses/Assignments";
+import Grades from "./Couses/Grades";
+import Datesheet from "./Exam/ExamDatesheet";
+import Results from "./Exam/Results";
+import SubjectGrades from "./Exam/SubjectGrades";
+import Papers from "./Exam/Papers";
+import FeeStructure from "./Fees/FeeStructure";
+import PaymentStatus from "./Fees/PaymentStatus";
+import PendingFees from "./Fees/PendingFees";
+import OnlinePayment from "./Fees/OnlinePayment";
+import ViewProfile from "./Profile/ViewProfile";
+import UpdateProfile from "./Profile/UpdateProfile";
+import Attendance from "./Profile/Attendance";
+import ChangePassword from "./Profile/ChangePassword";
 
 
 const Layout = () => {
@@ -35,34 +57,33 @@ const Layout = () => {
               <Route path="/student/profile" element={<Profile />} />
               <Route path="/student/support" element={<Support />} />
               {/* Dashborad */}
-              <Route path="/academic-performance" element={<Classes />} />
-              <Route path="/notifications-announcements" element={<Classes />} />
-              <Route path="/event-activities" element={<Classes />} />
-              <Route path="/deadlines" element={<Classes />} />
+              <Route path="/academic-performance" element={<AcademicPerformance />} />
+              <Route path="/notifications-announcements" element={<Notification />} />
+              <Route path="/event-activities" element={<Events />} />
+              <Route path="/deadlines" element={<Deadlines />} />
               {/* Classes */}
-              <Route path="/school-timetable" element={<Classes />} />
-              <Route path="/calendar" element={<Classes />} />
+              <Route path="/school-timetable" element={<Timetable />} />
+              <Route path="/calendar" element={<Calendar />} />
               {/* Courses */}
-              <Route path="/course-materials" element={<Classes />} />
-              <Route path="/subjects" element={<Classes />} />
-              <Route path="/student-assignments" element={<Classes />} />
-              <Route path="/student-grades" element={<Classes />} />
+              <Route path="/course-materials" element={<CourseMaterials />} />
+              <Route path="/subjects" element={<Subjects />} />
+              <Route path="/student-assignments" element={<Assignments />} />
+              <Route path="/student-grades" element={<Grades />} />
               {/*Exam Result */}
-              <Route path="/exam-datesheet" element={<Classes />} />
-              <Route path="/exam-result" element={<Classes />} />
-              <Route path="/subjectwise-grades" element={<Classes />} />
-              <Route path="/previous-year" element={<Classes />} />
-              <Route path="/exam-paper" element={<Classes />} />
+              <Route path="/exam-datesheet" element={<Datesheet />} />
+              <Route path="/exam-result" element={<Results />} />
+              <Route path="/subjectwise-grades" element={<SubjectGrades />} />
+              <Route path="/exam-paper" element={<Papers />} />
               {/* Fee managemenet */}
-              <Route path="/fee-structure" element={<Classes />} />
-              <Route path="/payment-status" element={<Classes />} />
-              <Route path="/pending-fee" element={<Classes />} />
-              <Route path="/online-payment" element={<Classes />} />
+              <Route path="/fee-structure" element={<FeeStructure />} />
+              <Route path="/payment-status" element={<PaymentStatus />} />
+              <Route path="/pending-fee" element={<PendingFees />} />
+              <Route path="/online-payment" element={<OnlinePayment />} />
               {/* Profile */}
-              <Route path="/view-profile" element={<Classes />} />
-              <Route path="/update-profile" element={<Classes />} />
-              <Route path="/student-attendance" element={<Classes />} />
-              <Route path="/change-password" element={<Classes />} />
+              <Route path="/view-profile" element={<ViewProfile />} />
+              <Route path="/update-profile" element={<UpdateProfile />} />
+              <Route path="/student-attendance" element={<Attendance />} />
+              <Route path="/change-password" element={<ChangePassword />} />
             </Routes>
           </div>
         </div>

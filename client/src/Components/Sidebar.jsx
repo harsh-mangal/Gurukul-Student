@@ -11,6 +11,10 @@ const Sidebar = ({ isOpen }) => {
             <Link to='/student/dashboard'>Dashboard</Link>
           </li>
           <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
+            <i className="fas fa-user"></i>
+            <Link to='/student/profile'>Profile</Link>
+          </li>
+          <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
             <i className="fas fa-user-graduate"></i>
             <Link to='/student/classes'>Classes</Link>
           </li>
@@ -25,10 +29,6 @@ const Sidebar = ({ isOpen }) => {
           <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
             <i className="fas fa-cogs"></i>
             <Link to='/student/feemanagement'>Fee Records</Link>
-          </li>
-          <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
-            <i className="fas fa-user"></i>
-            <Link to='/student/profile'>Profile</Link>
           </li>
           <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
             <i className="fas fa-question-circle"></i>
