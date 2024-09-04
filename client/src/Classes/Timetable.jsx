@@ -5,15 +5,41 @@ import { useParams } from 'react-router-dom';
 const ViewTimetable = () => {
   const { id } = useParams(); // Get the timetable ID from the URL
   const [timetable, setTimetable] = useState(null);
+  const [filteredTimetable, setFilteredTimetable] = useState(null);
+  const [student, setStudent] = useState(null);
 
+  // Fetch the student details
   useEffect(() => {
-    // Fetch the timetable details by ID
-    axios.get(`http://localhost:5000/api/timetable/getTimetableById/${id}`)
-      .then(response => setTimetable(response.data))
-      .catch(error => console.error('Error fetching timetable:', error));
-  }, [id]);
+    const fetchStudent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/66d18db1e677000e4ab754c8`);
+        setStudent(response.data);
+      } catch (err) {
+        console.error('Error fetching student:', err);
+      }
+    };
 
-  if (!timetable) return <div>Loading...</div>;
+    fetchStudent();
+  }, []);
+
+  // Fetch all timetables and filter based on the student's class
+  useEffect(() => {
+    if (student) {
+      axios.get(`http://localhost:5000/api/timetable/getAllTimetables`)
+        .then(response => {
+          const fetchedTimetables = response.data;
+
+          // Filter the timetable based on matching classes
+          const filtered = fetchedTimetables.find(entry => entry.className === student.class && entry.sectionName === student.section);
+          
+          // Set the filtered timetable to state
+          setFilteredTimetable(filtered);
+        })
+        .catch(error => console.error('Error fetching timetables:', error));
+    }
+  }, [student]);
+
+  if (!filteredTimetable) return <div>Loading...</div>;
 
   // Helper function to add minutes to a time string
   const addMinutes = (time, minutes) => {
@@ -32,11 +58,11 @@ const ViewTimetable = () => {
     let currentTime = '08:00'; // Assuming the timetable starts at 08:00 AM
 
     // Add assembly time slot if available
-    if (timetable.assemblyTime) {
-      const assemblyEndTime = addMinutes(timetable.assemblyTime, timetable.assemblyDuration);
+    if (filteredTimetable.assemblyTime) {
+      const assemblyEndTime = addMinutes(filteredTimetable.assemblyTime, filteredTimetable.assemblyDuration);
 
       timeSlots.push({
-        startTime: timetable.assemblyTime,
+        startTime: filteredTimetable.assemblyTime,
         endTime: assemblyEndTime,
         isAssembly: true
       });
@@ -46,12 +72,12 @@ const ViewTimetable = () => {
 
     // Calculate periods and lunch break times
     let periodCounter = 1;
-    for (let i = 0; i < timetable.periodNumber; i++) {
+    for (let i = 0; i < filteredTimetable.periodNumber; i++) {
       // Check if current period is the lunch break
-      if (i === timetable.lunchBreakAfterPeriod) {
+      if (i === filteredTimetable.lunchBreakAfterPeriod) {
         // Calculate lunch break start and end times
-        const lunchBreakStart = addMinutes(currentTime, timetable.periodDuration);
-        const lunchBreakEnd = addMinutes(lunchBreakStart, timetable.lunchBreakDuration);
+        const lunchBreakStart = addMinutes(currentTime, filteredTimetable.periodDuration);
+        const lunchBreakEnd = addMinutes(lunchBreakStart, filteredTimetable.lunchBreakDuration);
 
         timeSlots.push({
           startTime: lunchBreakStart,
@@ -63,7 +89,7 @@ const ViewTimetable = () => {
       }
 
       // Calculate period start and end times
-      const periodEndTime = addMinutes(currentTime, timetable.periodDuration);
+      const periodEndTime = addMinutes(currentTime, filteredTimetable.periodDuration);
       timeSlots.push({
         serialNumber: periodCounter,
         startTime: currentTime,
@@ -81,14 +107,14 @@ const ViewTimetable = () => {
 
   return (
     <div className="max-w-full mx-auto p-6 bg-white shadow-2xl rounded-lg mt-3">
-      <h1 className="text-2xl text-center font-bold mb-6">Timetable for Class: {timetable.className} ({timetable.sectionName})</h1>
+      <h1 className="text-2xl text-center font-bold mb-6">Timetable for Class: {filteredTimetable.className} ({filteredTimetable.sectionName})</h1>
 
       <table className="min-w-full bg-white border border-gray-300">
-        <thead className='bg-gray-200'>
+        <thead className="bg-gray-200">
           <tr>
             <th className="py-2 px-4 border-b">Sr. No.</th>
             <th className="py-2 px-4 border-b">Timing</th>
-            {Object.keys(timetable.timetable).map(day => (
+            {Object.keys(filteredTimetable.timetable).map(day => (
               <th key={day} className="py-2 px-4 border-b">{day}</th>
             ))}
           </tr>
@@ -106,13 +132,13 @@ const ViewTimetable = () => {
                   ? `Lunch Break (${formatTime(slot.startTime, slot.endTime)})`
                   : formatTime(slot.startTime, slot.endTime)}
               </td>
-              {Object.keys(timetable.timetable).map(day => {
-                const period = timetable.timetable[day][slot.serialNumber - 1] || {};
+              {Object.keys(filteredTimetable.timetable).map(day => {
+                const period = filteredTimetable.timetable[day][slot.serialNumber - 1] || {};
                 return (
                   <td key={day} className="py-2 px-4 border-b">
                     {slot.isAssembly || slot.isLunchBreak ? '--' : (
                       <div className="flex flex-col items-center">
-                        <div className="  ">{period.subject || '--'}</div>
+                        <div>{period.subject || '--'}</div>
                         <div className="text-sm text-gray-600">({period.teacher || '--'})</div>
                       </div>
                     )}
@@ -128,4 +154,3 @@ const ViewTimetable = () => {
 };
 
 export default ViewTimetable;
-

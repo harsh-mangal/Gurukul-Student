@@ -32,18 +32,6 @@ const Profile = () => {
             {/* Add content related to attendance here */}
           </div>
           </Link>
-
-          {/* Change Password */}
-          <Link to="/change-password">
-          <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-            <div className="flex items-center mb-4">
-              <i className="fas fa-key text-blue-800 text-3xl mr-3"></i>
-              <h2 className="text-2xl font-semibold text-black">Change Password</h2>
-            </div>
-            <p className="text-gray-700">Change your account password securely.</p>
-            {/* Add content related to change password here */}
-          </div>
-          </Link>
         </div>
       </div>
     </div>

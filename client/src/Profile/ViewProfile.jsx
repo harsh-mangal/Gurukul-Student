@@ -6,7 +6,6 @@ const StudentProfile = () => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -56,10 +55,6 @@ const StudentProfile = () => {
       <hr />
       <br />
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-            <strong className="block text-gray-700">First Name:</strong>
-            <div className="text-gray-900">{student.firstName}</div>
-          </div>
           <div className="flex justify-center row-span-3">
             <img
               src={student.image}
@@ -68,8 +63,8 @@ const StudentProfile = () => {
             />
           </div>
           <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-            <strong className="block text-gray-700">Last Name:</strong>
-            <div className="text-gray-900">{student.lastName}</div>
+            <strong className="block text-gray-700">Name:</strong>
+            <div className="text-gray-900">{student.firstName} {student.lastName}</div>
           </div>
           <div className="bg-gray-100 p-4 rounded-lg shadow-md">
             <strong className="block text-gray-700">Father's Name:</strong>
