@@ -1,72 +1,92 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 const StudentResultPage = () => {
-  const { studentId } = useParams(); // Get studentId from the URL
-  const [results, setResults] = useState([]);
+  const [studentResult, setStudentResult] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
+
+  const studentId = '66d2d1935592a8dabf88bf66'; // Replace with actual student ID
 
   useEffect(() => {
-    const fetchResults = async () => {
+    const fetchStudentResult = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/examresults/getExamResultByStudent/66d2d1935592a8dabf88bf66`);
-        setResults(response.data);
+        const response = await axios.get(`http://localhost:5000/api/examresults/getExamResultByStudent/${studentId}`);
+        setStudentResult(response.data);
       } catch (error) {
-        setError('Failed to fetch results. Please try again.');
+        setError(error.response ? error.response.data.message : 'An error occurred');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchResults();
-  }, []);
+    fetchStudentResult();
+  }, [studentId]);
+
+  const calculateTotalMarks = (result) => {
+    return result.students[0].scores.reduce((total, score) => total + score.score, 0);
+  };
+
+  const calculateMaximumMarks = (result) => {
+    return result.subjects.reduce((total, subject) => total + subject.totalMarks, 0);
+  };
+
+  const calculatePercentage = (totalMarks, maxMarks) => {
+    return ((totalMarks / maxMarks) * 100).toFixed(2);
+  };
+
+  if (loading) return <div className="text-center mt-10">Loading...</div>;
+  if (error) return <div className="text-center mt-10 text-red-500">{error}</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      <div className="bg-white shadow-md rounded-lg p-8 mt-10 w-full max-w-lg">
-        <h1 className="text-2xl font-semibold text-center mb-6">Student Exam Results</h1>
+    <div className="container mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+      <h2 className="text-2xl font-bold mb-4">Exam Result</h2>
+      {studentResult.map(result => {
+        const totalMarks = calculateTotalMarks(result);
+        const maxMarks = calculateMaximumMarks(result);
+        const percentage = calculatePercentage(totalMarks, maxMarks);
 
-        {loading && <p className="text-blue-500 text-center">Loading...</p>}
-        {error && <p className="text-red-500 text-center">{error}</p>}
+        return (
+          <div key={result._id} className="mb-6">
+            <h3 className="text-xl font-semibold">{result.className} ({result.sectionName}) {result.examName}</h3>
+            <p className="text-md">Name: {result.students[0].studentName}</p>
+            <p className="text-md">Roll No: {result.students[0].rollNo}</p>
 
-        {!loading && results.length === 0 && (
-          <p className="text-gray-700 text-center">No results found for this student.</p>
-        )}
-      </div>
-
-      {results.length > 0 && (
-        <div className="mt-10 w-full max-w-4xl">
-          {results.map((result, index) => (
-            <div key={index} className="bg-white shadow-md rounded-lg p-6 mb-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">{result.examName}</h2>
-              <p className="text-gray-700 mb-2"><strong>Class:</strong> {result.className}</p>
-              <p className="text-gray-700 mb-4"><strong>Section:</strong> {result.sectionName}</p>
-
-              <h3 className="text-lg font-medium text-gray-700 mb-2">Subjects & Scores</h3>
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr>
-                    <th className="border-b-2 border-gray-200 py-2">Subject</th>
-                    <th className="border-b-2 border-gray-200 py-2">Total Marks</th>
-                    <th className="border-b-2 border-gray-200 py-2">Score</th>
+            <table className="table-auto w-full mt-4">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="px-4 py-2">Sr No.</th>
+                  <th className="px-4 py-2">Subject</th>
+                  <th className="px-4 py-2">Score</th>
+                  <th className="px-4 py-2">Total Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {result.students[0].scores.map((score, index) => (
+                  <tr key={index} className="text-center">
+                  <td className="border px-4 py-2">{index + 1}</td>
+                    <td className="border px-4 py-2">{score.subjectName}</td>
+                    <td className="border px-4 py-2">{score.score}</td>
+                    <td className="border px-4 py-2">
+                      {result.subjects.find(subject => subject.subjectName === score.subjectName).totalMarks}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {result.students.find(student => student.studentId === studentId).scores.map((score, i) => (
-                    <tr key={i}>
-                      <td className="border-b border-gray-200 py-2">{score.subjectName}</td>
-                      <td className="border-b border-gray-200 py-2">{result.subjects.find(subject => subject.subjectName === score.subjectName).totalMarks}</td>
-                      <td className="border-b border-gray-200 py-2">{score.score}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </div>
-      )}
+                ))}
+                <tr className="font-semibold text-center">
+                <td className="border px-4 py-2"></td>
+                  <td className="border px-4 py-2">Total</td>
+                  <td className="border px-4 py-2" colSpan="2">{totalMarks}/{maxMarks}</td>
+                </tr>
+                <tr className="font-semibold text-center">
+                <td className="border px-4 py-2"></td>
+                  <td className="border px-4 py-2">Percentage</td>
+                  <td className="border px-4 py-2" colSpan="2">{percentage}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        );
+      })}
     </div>
   );
 };
