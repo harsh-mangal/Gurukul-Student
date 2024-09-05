@@ -14,7 +14,6 @@ import Footer from "./Components/Footer";
 import AcademicPerformance from "./Dashboard/AcademicPerformance";
 import Notification from "./Dashboard/Notification";
 import Events from "./Dashboard/Events";
-import Deadlines from "./Dashboard/Deadlines";
 import Timetable from "./Classes/Timetable";
 import Calendar from "./Classes/Calendar";
 import CourseMaterials from "./Couses/CourseMaterials";
@@ -33,6 +32,7 @@ import ViewProfile from "./Profile/ViewProfile";
 import UpdateProfile from "./Profile/UpdateProfile";
 import Attendance from "./Profile/Attendance";
 import ChangePassword from "./Profile/ChangePassword";
+import Homework from "./Dashboard/Homework";
 
 
 const Layout = () => {
@@ -60,7 +60,7 @@ const Layout = () => {
               <Route path="/academic-performance" element={<AcademicPerformance />} />
               <Route path="/notifications-announcements" element={<Notification />} />
               <Route path="/event-activities" element={<Events />} />
-              <Route path="/deadlines" element={<Deadlines />} />
+              <Route path="/student-homework" element={<Homework />} />
               {/* Classes */}
               <Route path="/school-timetable" element={<Timetable />} />
               <Route path="/calendar" element={<Calendar />} />

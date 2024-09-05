@@ -15,10 +15,6 @@ const Sidebar = ({ isOpen }) => {
             <Link to='/student/profile'>Profile</Link>
           </li>
           <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
-            <i className="fas fa-user-graduate"></i>
-            <Link to='/student/classes'>Classes</Link>
-          </li>
-          <li className="flex items-center space-x-2 hover:bg-gray-200 p-3 rounded bg-white text-black font-semibold shadow-lg">
             <i className="fas fa-chalkboard-teacher"></i>
             <Link to='/student/courses'>Courses</Link>
           </li>

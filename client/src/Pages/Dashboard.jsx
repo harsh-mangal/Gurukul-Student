@@ -42,14 +42,14 @@ const Dashboard = () => {
             </div>
           </Link>
 
-          {/* Deadlines */}
-          <Link to="/deadlines">
+          {/* Homework */}
+          <Link to="/student-homework">
             <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
               <div className="flex items-center mb-4">
-                <i className="fas fa-clock text-blue-800 text-3xl mr-3"></i>
-                <h2 className="text-2xl font-semibold text-black">Deadlines</h2>
+                <i className="fas fa-pencil text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Homework</h2>
               </div>
-              <p className="text-gray-700">Keep track of important deadlines and submissions.</p>
+              <p className="text-gray-700">Check your today's homework.</p>
             </div>
           </Link>
         </div>
