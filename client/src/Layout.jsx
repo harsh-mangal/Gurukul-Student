@@ -33,6 +33,7 @@ import UpdateProfile from "./Profile/UpdateProfile";
 import Attendance from "./Profile/Attendance";
 import ChangePassword from "./Profile/ChangePassword";
 import Homework from "./Dashboard/Homework";
+import TestSchedule from "./Dashboard/TestSchedule";
 
 
 const Layout = () => {
@@ -61,6 +62,7 @@ const Layout = () => {
               <Route path="/notifications-announcements" element={<Notification />} />
               <Route path="/event-activities" element={<Events />} />
               <Route path="/student-homework" element={<Homework />} />
+              <Route path="/test-schedule" element={<TestSchedule />} />
               {/* Classes */}
               <Route path="/school-timetable" element={<Timetable />} />
               <Route path="/calendar" element={<Calendar />} />

@@ -52,6 +52,18 @@ const Dashboard = () => {
               <p className="text-gray-700">Check your today's homework.</p>
             </div>
           </Link>
+
+          {/* Test Schedule */}
+          <Link to="/test-schedule">
+            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
+              <div className="flex items-center mb-4">
+                <i className="fas fa-clock text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Test Schedule</h2>
+              </div>
+              <p className="text-gray-700">View and prepare for your test.</p>
+            </div>
+          </Link>
+
         </div>
       </div>
     </div>
