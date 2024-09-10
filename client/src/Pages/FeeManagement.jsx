@@ -21,24 +21,12 @@ const FeeManagement = () => {
             </div>
           </Link>
 
-          {/* Payment Status */}
-          <Link to="/payment-status">
-            <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-              <div className="flex items-center mb-4">
-                <i className="fas fa-money-bill-wave text-blue-800 text-3xl mr-3"></i>
-                <h2 className="text-2xl font-semibold text-black">Payment Status</h2>
-              </div>
-              <p className="text-gray-700">Check the status of your fee payments.</p>
-              {/* Add content related to payment status here */}
-            </div>
-          </Link>
-
           {/* Left Fees */}
           <Link to="/pending-fee">
             <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
               <div className="flex items-center mb-4">
                 <i className="fas fa-coins text-blue-800 text-3xl mr-3"></i>
-                <h2 className="text-2xl font-semibold text-black">Pending Fees</h2>
+                <h2 className="text-2xl font-semibold text-black">Student Ledger</h2>
               </div>
               <p className="text-gray-700">View the remaining fees to be paid.</p>
               {/* Add content related to left fees here */}
