@@ -35,19 +35,24 @@ import ChangePassword from "./Profile/ChangePassword";
 import Homework from "./Dashboard/Homework";
 import TestSchedule from "./Dashboard/TestSchedule";
 
-
 const Layout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="layout-container">
+    <div className="layout-container flex flex-col min-h-screen">
       <Router>
         <div className="navbar">
-          <Navbar />
+          <Navbar toggleSidebar={toggleSidebar} />
         </div>
-        <div className="content-container">
-          <div className="sidebar">
-            <Sidebar />
+        <div className="flex flex-1">
+          <div className={`sidebar ${isSidebarOpen ? "block" : "hidden"} md:block`}>
+            <Sidebar isOpen={isSidebarOpen} />
           </div>
-          <div className="main-content">
+          <div className="main-content flex-1 p-4">
             <Routes>
               <Route path="/student/chat" element={<Chat />} />
               <Route path="/student/classes" element={<Classes />} />
@@ -57,31 +62,26 @@ const Layout = () => {
               <Route path="/student/feemanagement" element={<FeeManagement />} />
               <Route path="/student/profile" element={<Profile />} />
               <Route path="/student/support" element={<Support />} />
-              {/* Dashborad */}
+              {/* Other routes */}
               <Route path="/academic-performance" element={<AcademicPerformance />} />
               <Route path="/notifications-announcements" element={<Notification />} />
               <Route path="/event-activities" element={<Events />} />
               <Route path="/student-homework" element={<Homework />} />
               <Route path="/test-schedule" element={<TestSchedule />} />
-              {/* Classes */}
               <Route path="/school-timetable" element={<Timetable />} />
               <Route path="/calendar" element={<Calendar />} />
-              {/* Courses */}
               <Route path="/course-materials" element={<CourseMaterials />} />
               <Route path="/subjects" element={<Subjects />} />
               <Route path="/student-assignments" element={<Assignments />} />
               <Route path="/student-grades" element={<Grades />} />
-              {/*Exam Result */}
               <Route path="/exam-datesheet" element={<Datesheet />} />
               <Route path="/exam-result" element={<Results />} />
               <Route path="/subjectwise-grades" element={<SubjectGrades />} />
               <Route path="/exam-paper" element={<Papers />} />
-              {/* Fee managemenet */}
               <Route path="/fee-structure" element={<FeeStructure />} />
               <Route path="/payment-status" element={<PaymentStatus />} />
               <Route path="/pending-fee" element={<PendingFees />} />
               <Route path="/online-payment" element={<OnlinePayment />} />
-              {/* Profile */}
               <Route path="/view-profile" element={<ViewProfile />} />
               <Route path="/update-profile" element={<UpdateProfile />} />
               <Route path="/student-attendance" element={<Attendance />} />

@@ -46,6 +46,7 @@ const HomeworkPage = () => {
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
             <tr>
+              <th className="py-2 px-4 border-b">Sr No.</th>
               <th className="py-2 px-4 border-b">Subject</th>
               <th className="py-2 px-4 border-b">Homework</th>
             </tr>
@@ -53,6 +54,7 @@ const HomeworkPage = () => {
           <tbody>
             {Object.entries(homeworkData.homework).map(([subject, homework], index) => (
               <tr key={index} className="text-center">
+                <td className="py-2 px-4 border-b">{index + 1}</td>
                 <td className="py-2 px-4 border-b">{subject}</td>
                 <td className="py-2 px-4 border-b">{homework}</td>
               </tr>
