@@ -25,34 +25,12 @@ body, html, #root {
 
 .main-content {
   flex: 1;
-  padding: 20px; /* Adjust as necessary */
+   /* Adjust as necessary */
+  padding-top: 2px !important;
   overflow-y: auto;
   min-height: 90vh !important;
 }
 
 .footer {
   flex-shrink: 0;
-}
-.loader {
-  border-top-color: #3498db;
-  -webkit-animation: spinner 0.6s linear infinite;
-  animation: spinner 0.6s linear infinite;
-}
-
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import { useParams } from 'react-router-dom';
 
 const StudentLedger = () => {
   const { id } = useParams();
   const [ledger, setLedger] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const schoolName = "Gurukul 2.0";
-  const schoolAddress = "123 School Lane, Education City, Country";
-  const phoneNumber = "(123) 456-7890";
-  const email = "info@schooldomain.com";
+
   useEffect(() => {
     const fetchLedger = async () => {
       try {
@@ -32,107 +27,22 @@ const StudentLedger = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center text-gray-600 py-4">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-center text-red-500 py-4">Error: {error}</div>;
   }
 
-  const { entries = [], studentId, feeStructureId, totalAmount } = ledger || {};
-
-  const generatePDF = () => {
-    const doc = new jsPDF();
-    const schoolName = "Gurukul 2.0";
-    const schoolAddress = "123 School Lane, Education City, Country";
-    const phoneNumber = "(123) 456-7890";
-    const email = "info@schooldomain.com";
-  
-    // Title Section
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.text(schoolName, 14, 20);
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
-    doc.text(schoolAddress, 14, 30);
-    doc.text(`Phone: ${phoneNumber} | Email: ${email}`, 14, 40);
-    doc.line(14, 45, 200 - 14, 45); // Horizontal line
-  
-    // Ledger Title
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text('Student Ledger', 14, 55);
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
-    doc.text(`Student ID: ${id}`, 14, 65);
-    doc.text(`Total Amount (INR): ${totalAmount?.toLocaleString('en-IN')}`, 14, 75);
-  
-    // Table
-    const tableStartY = 85;
-    doc.autoTable({
-      startY: tableStartY,
-      head: [['Date', 'Receipt Number', 'Description', 'Credit Amount', 'Debit Amount', 'Balance']],
-      body: entries.map(entry => [
-        new Date(entry.date).toLocaleDateString(),
-        entry.receiptNumber || '-',
-        entry.description,
-        entry.creditAmount ? entry.creditAmount.toLocaleString('en-IN') : '-',
-        entry.debitAmount ? entry.debitAmount.toLocaleString('en-IN') : '-',
-        entry.balance.toLocaleString('en-IN')
-      ]),
-      headStyles: { fillColor: [0, 0, 0] },
-      styles: { fontSize: 10, cellPadding: 2 },
-      margin: { left: 14, right: 14 },
-      theme: 'grid'
-    });
-  
-    // Footer
-    const footerText = `Page ${doc.internal.getNumberOfPages()}`;
-    doc.setFontSize(10);
-    doc.text(footerText, 14, doc.internal.pageSize.height - 10);
-  
-    doc.save(`ledger_${id}.pdf`);
-  };
-  
-
-  const printPage = () => {
-    const printContent = document.getElementById('ledgerContent').innerHTML;
-    const originalContent = document.body.innerHTML;
-
-    document.body.innerHTML = `
-      <html>
-        <head>
-          <style>
-            @media print {
-              /* Hide elements that should not be printed */
-              .no-print { display: none; }
-            }
-          </style>
-        </head>
-        <body>
-          <div class="no-print">
-            <h1>${schoolName}</h1>
-            <p>${schoolAddress}</p>
-            <p>Phone: ${phoneNumber} | Email: ${email}</p>
-          </div>
-          ${printContent}
-        </body>
-      </html>
-    `;
-
-    window.print();
-
-    // Restore original content after printing
-    document.body.innerHTML = originalContent;
-  };
+  const { entries = [] } = ledger || {};
 
   return (
-    <div className="p-6 bg-gray-50">
-      
+    <div className="p-6 bg-gray-50 rounded-lg shadow-lg max-w-7xl mx-auto mt-6">
+      <h3 className="text-2xl font-semibold text-center mb-6 text-gray-800">Student Ledger</h3>
 
-      <h3 className="text-2xl font-medium mb-4">Ledger Entries</h3>
-      <div id="ledgerContent">
-        <table className="min-w-full bg-white border border-gray-300">
+      <div className="hidden md:block">
+        {/* Desktop Table View */}
+        <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
           <thead>
             <tr className="bg-gray-100 text-left">
               <th className="py-3 px-4 border-b">Date</th>
@@ -146,7 +56,7 @@ const StudentLedger = () => {
           <tbody>
             {entries.length > 0 ? (
               entries.map((entry, index) => (
-                <tr key={index} className="border-b text-center">
+                <tr key={index} className="border-b text-center hover:bg-gray-50 transition-colors">
                   <td className="py-2 px-4">{new Date(entry.date).toLocaleDateString()}</td>
                   <td className="py-2 px-4">{entry.receiptNumber || '-'}</td>
                   <td className="py-2 px-4">{entry.description}</td>
@@ -157,11 +67,41 @@ const StudentLedger = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="py-2 px-4 text-center">No data available</td>
+                <td colSpan="6" className="py-4 px-4 text-center text-gray-600">No data available</td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="md:hidden">
+        {/* Mobile Card View */}
+        {entries.length > 0 ? (
+          entries.map((entry, index) => (
+            <div key={index} className="mb-4 bg-white p-4 rounded-lg shadow-md">
+              <div className="mb-2">
+                <span className="font-semibold">Date: </span>{new Date(entry.date).toLocaleDateString()}
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold">Receipt Number: </span>{entry.receiptNumber || '-'}
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold">Description: </span>{entry.description}
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold">Debit Amount: </span>{entry.debitAmount ? entry.debitAmount.toLocaleString('en-IN') : '-'}
+              </div>
+              <div className="mb-2">
+                <span className="font-semibold">Credit Amount: </span>{entry.creditAmount ? entry.creditAmount.toLocaleString('en-IN') : '-'}
+              </div>
+              <div>
+                <span className="font-semibold">Balance: </span>{entry.balance.toLocaleString('en-IN')}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="text-center text-gray-600">No data available</div>
+        )}
       </div>
     </div>
   );
