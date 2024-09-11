@@ -11,6 +11,7 @@ import Support from "./Pages/Support";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
 import Footer from "./Components/Footer";
+import BottomNav from "./Components/BottomNav"; // Import BottomNav
 import AcademicPerformance from "./Dashboard/AcademicPerformance";
 import Notification from "./Dashboard/Notification";
 import Events from "./Dashboard/Events";
@@ -49,9 +50,12 @@ const Layout = () => {
           <Navbar toggleSidebar={toggleSidebar} />
         </div>
         <div className="flex flex-1">
+          {/* Sidebar - Hidden on small screens, visible on medium and larger screens */}
           <div className={`sidebar ${isSidebarOpen ? "block" : "hidden"} md:block`}>
             <Sidebar isOpen={isSidebarOpen} />
           </div>
+
+          {/* Main content */}
           <div className="main-content flex-1 p-4">
             <Routes>
               <Route path="/student/chat" element={<Chat />} />
@@ -89,8 +93,15 @@ const Layout = () => {
             </Routes>
           </div>
         </div>
-        <div className="footer">
+
+        {/* Footer - Hidden on small screens */}
+        <div className="footer hidden md:block">
           <Footer />
+        </div>
+
+        {/* Bottom Navigation - Visible only on small screens */}
+        <div className="md:hidden">
+          <BottomNav />
         </div>
       </Router>
     </div>
