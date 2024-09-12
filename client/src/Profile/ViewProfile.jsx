@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import studentId from '../config';
 
 const StudentProfile = () => {
   const [student, setStudent] = useState(null);
@@ -36,7 +37,7 @@ const StudentProfile = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/66da9ee5d94e5d3fad0399b6`);
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
         setStudent(response.data);
         setFormData({
           ...response.data,

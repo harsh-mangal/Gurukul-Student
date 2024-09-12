@@ -1,7 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ toggleSidebar }) => {
+  const history = useNavigate();
+  function handleLogout() {
+    localStorage.removeItem('token');
+    // If using React Router for navigation
+   
+    history.push('/login'); // Redirect to the login page or desired route
+    // Optionally: Clear any other user-specific state or context
+}
+
   return (
     <nav className="bg-blue-800 p-4 flex justify-between items-center shadow-md">
       <div className="text-white">
@@ -12,8 +21,7 @@ const Navbar = ({ toggleSidebar }) => {
         <Link to="/notifications-announcements" className="text-white mr-6  md:block">
           <i className="fas fa-bell  hover:text-gray-200"></i>
         </Link>
-        <span className="text-white mr-4 hidden md:block">User Name</span>
-        <button className="bg-white text-light-blue-500 px-4 py-2 rounded hover:bg-gray-200 font-semibold hidden md:block">
+        <button className="bg-white text-light-blue-500 px-4 py-2 rounded hover:bg-gray-200 font-semibold hidden md:block" onClick={handleLogout}>
           <i className="fa-solid fa-right-from-bracket"></i> Logout
         </button>
         {/* Show this on smaller screens */}
