@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Calendar from "../Components/MyCalendar"; // Adjust path if needed
 import axios from "axios";
 
-const EventByDate = () => {
+const Events = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [events, setEvents] = useState([]);
     const [filteredEvents, setFilteredEvents] = useState([]);
@@ -114,4 +114,4 @@ const EventByDate = () => {
     );
   };
   
-  export default EventByDate;
+  export default Events;

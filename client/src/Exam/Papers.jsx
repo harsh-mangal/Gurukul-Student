@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-function StudentOldPapers() {
+function Papers() {
   const { className, sectionName } = useParams(); // Get class and section from URL
   const [papers, setPapers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,7 @@ function StudentOldPapers() {
                 <p>Subject: {paper.subjectName}</p>
               </div>
               <a
-                href={`http://localhost:5000/uploads/${paper.paperFile}`}
+                href={paper.paperFile}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500 transition duration-300"
@@ -59,4 +59,4 @@ function StudentOldPapers() {
   );
 }
 
-export default StudentOldPapers;
+export default Papers;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const CourseMaterialStudentPage = () => {
+const CourseMaterial = () => {
     const { className, sectionName } = useParams();
     const [courseMaterials, setCourseMaterials] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -108,4 +108,4 @@ const CourseMaterialStudentPage = () => {
     );
 };
 
-export default CourseMaterialStudentPage;
+export default CourseMaterial;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Calendar = ({ handleDateChange, highlightDatesWithEvents, selectedDate, onMonthChange }) => {
+const MyCalendar = ({ handleDateChange, highlightDatesWithEvents, selectedDate, onMonthChange }) => {
   const [currentDate, setCurrentDate] = useState(new Date(selectedDate));
 
   const handlePrevMonth = () => {
@@ -96,4 +96,4 @@ const Calendar = ({ handleDateChange, highlightDatesWithEvents, selectedDate, on
   );
 };
 
-export default Calendar;
+export default MyCalendar;
