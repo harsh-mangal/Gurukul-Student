@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import studentId from '../config';
 
 const Studentinfo = () => {
   const [student, setStudent] = useState(null);
 
   // Fetch student data from the backend API
   useEffect(() => {
-    axios.get('http://localhost:5000/api/students/getStudents/66da9ee5d94e5d3fad0399b6')
+    axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`)
       .then(response => {
         setStudent(response.data);
       })

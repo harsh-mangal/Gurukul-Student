@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Chat from "./Pages/Chat";
 import Classes from "./Pages/Classes";
 import Courses from "./Pages/Courses";
@@ -35,76 +35,101 @@ import Attendance from "./Profile/Attendance";
 import ChangePassword from "./Profile/ChangePassword";
 import Homework from "./Dashboard/Homework";
 import TestSchedule from "./Dashboard/TestSchedule";
+import Login from "./Pages/Login";
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
+  // Example function to check if user is authenticated
+  const isAuthenticated = () => {
+    // Check for token in localStorage or any other method
+    return localStorage.getItem("authToken") !== null;
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <div className="layout-container flex flex-col min-h-screen">
-      <Router>
-        <div className="navbar">
-          <Navbar toggleSidebar={toggleSidebar} />
-        </div>
-        <div className="flex flex-1">
-          {/* Sidebar - Hidden on small screens, visible on medium and larger screens */}
-          <div className={`sidebar ${isSidebarOpen ? "block" : "hidden"} md:block`}>
-            <Sidebar isOpen={isSidebarOpen} />
-          </div>
+    <Router>
+      <div className="layout-container flex flex-col min-h-screen">
+        {/* Check if route is not login to show Navbar, Sidebar, and Footer */}
+        <div className="flex-1">
+          {/* Conditional rendering based on the route */}
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            {/* Protected routes */}
+            <Route
+              path="/*"
+              element={
+                isAuthenticated() ? (
+                  <div className="flex flex-col min-h-screen">
+                    <Navbar toggleSidebar={toggleSidebar} />
+                    <div className="flex flex-1">
+                      {/* Sidebar - Hidden on small screens, visible on medium and larger screens */}
+                      <div className={`sidebar ${isSidebarOpen ? "block" : "hidden"} md:block`}>
+                        <Sidebar isOpen={isSidebarOpen} />
+                      </div>
 
-          {/* Main content */}
-          <div className="main-content flex-1 p-4">
-            <Routes>
-              <Route path="/student/chat" element={<Chat />} />
-              <Route path="/student/classes" element={<Classes />} />
-              <Route path="/student/courses" element={<Courses />} />
-              <Route path="/student/dashboard" element={<Dashboard />} />
-              <Route path="/student/examresults" element={<ExamResults />} />
-              <Route path="/student/feemanagement" element={<FeeManagement />} />
-              <Route path="/student/profile" element={<Profile />} />
-              <Route path="/student/support" element={<Support />} />
-              {/* Other routes */}
-              <Route path="/academic-performance" element={<AcademicPerformance />} />
-              <Route path="/notifications-announcements" element={<Notification />} />
-              <Route path="/event-activities" element={<Events />} />
-              <Route path="/student-homework" element={<Homework />} />
-              <Route path="/test-schedule" element={<TestSchedule />} />
-              <Route path="/school-timetable" element={<Timetable />} />
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/course-materials" element={<CourseMaterials />} />
-              <Route path="/subjects" element={<Subjects />} />
-              <Route path="/student-assignments" element={<Assignments />} />
-              <Route path="/student-grades" element={<Grades />} />
-              <Route path="/exam-datesheet" element={<Datesheet />} />
-              <Route path="/exam-result" element={<Results />} />
-              <Route path="/subjectwise-grades" element={<SubjectGrades />} />
-              <Route path="/exam-paper" element={<Papers />} />
-              <Route path="/fee-structure" element={<FeeStructure />} />
-              <Route path="/payment-status" element={<PaymentStatus />} />
-              <Route path="/pending-fee" element={<PendingFees />} />
-              <Route path="/online-payment" element={<OnlinePayment />} />
-              <Route path="/view-profile" element={<ViewProfile />} />
-              <Route path="/update-profile" element={<UpdateProfile />} />
-              <Route path="/student-attendance" element={<Attendance />} />
-              <Route path="/change-password" element={<ChangePassword />} />
-            </Routes>
-          </div>
-        </div>
+                      {/* Main content */}
+                      <div className="main-content flex-1 p-4">
+                        <Routes>
+                          <Route path="/student/chat" element={<Chat />} />
+                          <Route path="/student/classes" element={<Classes />} />
+                          <Route path="/student/courses" element={<Courses />} />
+                          <Route path="/student/dashboard" element={<Dashboard />} />
+                          <Route path="/student/examresults" element={<ExamResults />} />
+                          <Route path="/student/feemanagement" element={<FeeManagement />} />
+                          <Route path="/student/profile" element={<Profile />} />
+                          <Route path="/student/support" element={<Support />} />
+                          {/* Other routes */}
+                          <Route path="/academic-performance" element={<AcademicPerformance />} />
+                          <Route path="/notifications-announcements" element={<Notification />} />
+                          <Route path="/event-activities" element={<Events />} />
+                          <Route path="/student-homework" element={<Homework />} />
+                          <Route path="/test-schedule" element={<TestSchedule />} />
+                          <Route path="/school-timetable" element={<Timetable />} />
+                          <Route path="/calendar" element={<Calendar />} />
+                          <Route path="/course-materials" element={<CourseMaterials />} />
+                          <Route path="/subjects" element={<Subjects />} />
+                          <Route path="/student-assignments" element={<Assignments />} />
+                          <Route path="/student-grades" element={<Grades />} />
+                          <Route path="/exam-datesheet" element={<Datesheet />} />
+                          <Route path="/exam-result" element={<Results />} />
+                          <Route path="/subjectwise-grades" element={<SubjectGrades />} />
+                          <Route path="/exam-paper" element={<Papers />} />
+                          <Route path="/fee-structure" element={<FeeStructure />} />
+                          <Route path="/payment-status" element={<PaymentStatus />} />
+                          <Route path="/pending-fee" element={<PendingFees />} />
+                          <Route path="/online-payment" element={<OnlinePayment />} />
+                          <Route path="/view-profile" element={<ViewProfile />} />
+                          <Route path="/update-profile" element={<UpdateProfile />} />
+                          <Route path="/student-attendance" element={<Attendance />} />
+                          <Route path="/change-password" element={<ChangePassword />} />
+                          <Route path="*" element={<Navigate to="/login" />} />
+                        </Routes>
+                      </div>
+                    </div>
 
-        {/* Footer - Hidden on small screens */}
-        <div className="footer hidden md:block">
-          <Footer />
-        </div>
+                    {/* Footer - Hidden on small screens */}
+                    <div className="footer hidden md:block">
+                      <Footer />
+                    </div>
 
-        {/* Bottom Navigation - Visible only on small screens */}
-        <div className="md:hidden">
-          <BottomNav />
+                    {/* Bottom Navigation - Visible only on small screens */}
+                    <div className="md:hidden">
+                      <BottomNav />
+                    </div>
+                  </div>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+          </Routes>
         </div>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 

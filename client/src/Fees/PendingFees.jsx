@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import studentId from '../config';
 
 const StudentLedger = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const StudentLedger = () => {
   useEffect(() => {
     const fetchLedger = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/ledgers/getLedgerByStudentId/66da9ee5d94e5d3fad0399b6`);
+        const response = await fetch(`http://localhost:5000/api/ledgers/getLedgerByStudentId/${studentId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

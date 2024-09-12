@@ -3,13 +3,14 @@ import axios from 'axios';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { FaCheckCircle, FaTimesCircle, FaExclamationTriangle, FaUserClock } from 'react-icons/fa';
+import studentId from '../config';
 
 const AttendanceTimeline = () => {
   const [attendanceData, setAttendanceData] = useState([]);
 
   // Fetch attendance data based on studentId
   useEffect(() => {
-    axios.get('http://localhost:5000/api/attendance/getAttendanceByStudentId/66da9ee5d94e5d3fad0399b6')
+    axios.get(`http://localhost:5000/api/attendance/getAttendanceByStudentId/${studentId}`)
       .then((response) => {
         console.log('API Response:', response.data.students); // Log the response to see if data exists
         if (response.data && response.data.students) {
