@@ -29,7 +29,7 @@ const StudentProfile = () => {
     transportationMode: "",
     routeName: "", // New field
     location: "", // New field
-    routeCharges: 0, // New field
+    routeCharges: "", // New field
     routeType: "",
     username: "", // New field
   });
@@ -153,6 +153,20 @@ const StudentProfile = () => {
           </div>
         )}
 
+        {student.category && (
+          <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+            <strong className="block text-gray-700">Bus Charges:</strong>
+            <div className="text-gray-900">{student.routeCharges}</div>
+          </div>
+        )}
+
+        {student.financial && (
+          <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+            <strong className="block text-gray-700">Bus Charges:</strong>
+            <div className="text-gray-900">{student.routeCharges}</div>
+          </div>
+        )}
+
         {student.class && (
           <div className="bg-gray-100 p-4 rounded-lg shadow-md">
             <strong className="block text-gray-700">Class:</strong>
@@ -216,7 +230,7 @@ const StudentProfile = () => {
           </div>
         )}
 
-        {student.routeCharges && (
+        {student.routeCharges > 0 && (
           <div className="bg-gray-100 p-4 rounded-lg shadow-md">
             <strong className="block text-gray-700">Bus Charges:</strong>
             <div className="text-gray-900">{student.routeCharges}</div>
