@@ -13,7 +13,7 @@ function Subjects() {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);
@@ -26,7 +26,7 @@ function Subjects() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/classes/getClassByName/${student.class}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/classes/getClassByName/${student.class}`);
         setData([response.data]); // Wrap data in an array to match previous structure
         setLoading(false);
       } catch (err) {

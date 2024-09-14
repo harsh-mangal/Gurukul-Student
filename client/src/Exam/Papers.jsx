@@ -11,7 +11,7 @@ function Papers() {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);
@@ -24,7 +24,7 @@ function Papers() {
   useEffect(() => {
     if (student) {
       // Fetch papers for the selected class and section
-      axios.get(`http://localhost:5000/api/papers/getPapersByClassAndSection/${student.class}/${student.section}`)
+      axios.get(`https://project-5zck.onrender.com/api/papers/getPapersByClassAndSection/${student.class}/${student.section}`)
         .then((response) => {
           setPapers(response.data);
           setLoading(false);
@@ -72,7 +72,7 @@ function Papers() {
                   <a href={paper.paperFile} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 flex items-center text-sm sm:text-base">
                     <i className="fas fa-eye mr-1 sm:mr-2"></i>View
                   </a>
-                  <a href={`http://localhost:5000/api/papers/download/${paper._id}`} download className="text-green-600 hover:text-green-800 flex items-center text-sm sm:text-base">
+                  <a href={`https://project-5zck.onrender.com/api/papers/download/${paper._id}`} download className="text-green-600 hover:text-green-800 flex items-center text-sm sm:text-base">
                     <i className="fas fa-download mr-1 sm:mr-2"></i>Download
                   </a>
                 </div>

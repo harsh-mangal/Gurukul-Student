@@ -10,7 +10,7 @@ const AttendanceTimeline = () => {
 
   // Fetch attendance data based on studentId
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/attendance/getAttendanceByStudentId/${studentId}`)
+    axios.get(`https://project-5zck.onrender.com/api/attendance/getAttendanceByStudentId/${studentId}`)
       .then((response) => {
         console.log('API Response:', response.data.students); // Log the response to see if data exists
         if (response.data && response.data.students) {

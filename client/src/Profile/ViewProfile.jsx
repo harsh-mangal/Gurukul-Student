@@ -37,7 +37,7 @@ const StudentProfile = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
         setStudent(response.data);
         setFormData({
           ...response.data,

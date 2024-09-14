@@ -11,7 +11,7 @@ const StudentLedger = () => {
   useEffect(() => {
     const fetchLedger = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/ledgers/getLedgerByStudentId/${studentId}`);
+        const response = await fetch(`https://project-5zck.onrender.com/api/ledgers/getLedgerByStudentId/${studentId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

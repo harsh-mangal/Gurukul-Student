@@ -11,7 +11,7 @@ const ViewTimetable = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);
@@ -24,7 +24,7 @@ const ViewTimetable = () => {
   // Fetch all timetables and filter based on the student's class
   useEffect(() => {
     if (student) {
-      axios.get(`http://localhost:5000/api/timetable/getAllTimetables`)
+      axios.get(`https://project-5zck.onrender.com/api/timetable/getAllTimetables`)
         .then(response => {
           const fetchedTimetables = response.data;
 

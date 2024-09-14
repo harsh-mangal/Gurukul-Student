@@ -7,7 +7,7 @@ const Studentinfo = () => {
 
   // Fetch student data from the backend API
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`)
+    axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`)
       .then(response => {
         setStudent(response.data);
       })

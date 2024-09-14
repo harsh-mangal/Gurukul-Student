@@ -12,7 +12,7 @@ const StudentAchievementsPage = ({ className, sectionName }) => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);
@@ -26,7 +26,7 @@ const StudentAchievementsPage = ({ className, sectionName }) => {
     const fetchAchievements = async () => {
       if (student) {
         try {
-          const response = await axios.get(`http://localhost:5000/api/studentAchievements/getAchievementsByClassAndSection/${student.class}/${student.section}`);
+          const response = await axios.get(`https://project-5zck.onrender.com/api/studentAchievements/getAchievementsByClassAndSection/${student.class}/${student.section}`);
           setAchievements(response.data);
           setLoading(false);
         } catch (err) {

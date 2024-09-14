@@ -12,7 +12,7 @@ const HomeworkPage = () => {
     const fetchHomework = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/homework/getHomeworkByClassAndSectionName/1st/Rose`
+          `https://project-5zck.onrender.com/api/homework/getHomeworkByClassAndSectionName/1st/Rose`
         );
         setHomeworkData(response.data);
       } catch (error) {

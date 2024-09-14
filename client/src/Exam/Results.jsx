@@ -11,7 +11,7 @@ const StudentResultPage = () => {
   useEffect(() => {
     const fetchStudentResult = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/examresults/getExamResultByStudent/${studentId}`);
+        const response = await axios.get(`https://project-5zck.onrender.com/api/examresults/getExamResultByStudent/${studentId}`);
         setStudentResult(response.data);
       } catch (error) {
         setError(error.response ? error.response.data.message : 'An error occurred');

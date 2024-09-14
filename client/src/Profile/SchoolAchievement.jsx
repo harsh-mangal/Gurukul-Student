@@ -9,7 +9,7 @@ const AchievementsPage = () => {
     useEffect(() => {
         const fetchAchievements = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/achievements/getAchievements');
+                const response = await axios.get('https://project-5zck.onrender.com/api/achievements/getAchievements');
                 setAchievements(response.data);
             } catch (err) {
                 setError('Failed to fetch achievements');
@@ -58,7 +58,7 @@ const AchievementsPage = () => {
                                 <a href={achievement.image} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center text-sm sm:text-base">
                                     <i className="fas fa-eye mr-2"></i>View
                                 </a>
-                                <a href={`http://localhost:5000/api/assignments/download/${achievement._id}`} download className="text-green-600 hover:underline flex items-center text-sm sm:text-base">
+                                <a href={`https://project-5zck.onrender.com/api/assignments/download/${achievement._id}`} download className="text-green-600 hover:underline flex items-center text-sm sm:text-base">
                                     <i className="fas fa-download mr-2"></i>Download
                                 </a>
                             </div>

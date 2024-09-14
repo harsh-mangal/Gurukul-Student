@@ -20,7 +20,7 @@ const Login = () => {
     setDeactivationMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', {
+      const response = await axios.post('https://project-5zck.onrender.com/api/users/login', {
         username,
         password
       });
@@ -31,7 +31,7 @@ const Login = () => {
         const studentId = decodedToken.userId; // Adjust according to your token payload structure
 
         // Fetch student status
-        const statusResponse = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        const statusResponse = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
         
         if (statusResponse.data.status === 'inactive') {
           setDeactivationMessage('Student is deactivated.');
