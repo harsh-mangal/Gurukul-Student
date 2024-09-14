@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode'; // Adjust import based on your setup
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [deactivationMessage, setDeactivationMessage] = useState('');
+  
+  const navigate = useNavigate(); // Use useNavigate for redirection
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
     setError('');
+    setDeactivationMessage('');
 
     try {
       const response = await axios.post('http://localhost:5000/api/users/login', {
@@ -20,14 +26,27 @@ const Login = () => {
       });
 
       if (response.data.token) {
-        // Store the token (e.g., in localStorage)
-        localStorage.setItem('authToken', response.data.token);
-        // Redirect to the main page or another route
-        window.location.href = '/student/dashboard'; // Example redirection
+        // Decode the token to get student ID
+        const decodedToken = jwtDecode(response.data.token);
+        const studentId = decodedToken.userId; // Adjust according to your token payload structure
+
+        // Fetch student status
+        const statusResponse = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        
+        if (statusResponse.data.status === 'inactive') {
+          setDeactivationMessage('Student is deactivated.');
+          // Clear the token from localStorage
+          localStorage.removeItem('authToken');
+        } else {
+          // Store the token (e.g., in localStorage)
+          localStorage.setItem('authToken', response.data.token);
+          navigate('/student/dashboard'); // Redirect using navigate
+        }
       } else {
         setError('Login failed. Please check your credentials.');
       }
     } catch (err) {
+      console.error('Login error:', err); // Log the error for debugging
       setError('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -50,6 +69,8 @@ const Login = () => {
 
         {/* Error Message */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {/* Deactivation Message */}
+        {deactivationMessage && <p className="text-red-500 text-center mb-4">{deactivationMessage}</p>}
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
