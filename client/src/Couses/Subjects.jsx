@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import studentId from '../config';
 import axios from 'axios';
 import { FaSpinner, FaExclamationTriangle } from 'react-icons/fa'; // Using react-icons for loading and error icons
 
 function Subjects() {
-  const { classId } = useParams(); // Get classId from URL params
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [student, setStudent] = useState(null);
+
+  // Fetch the student details
+  useEffect(() => {
+    const fetchStudent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        setStudent(response.data);
+      } catch (err) {
+        console.error('Error fetching student:', err);
+      }
+    };
+
+    fetchStudent();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/classes/getClassById/C7`);
+        const response = await axios.get(`http://localhost:5000/api/classes/getClassByName/${student.class}`);
         setData([response.data]); // Wrap data in an array to match previous structure
         setLoading(false);
       } catch (err) {
@@ -22,10 +36,9 @@ function Subjects() {
     };
 
     fetchData();
-  }, []); // Fetch data whenever classId changes
+  }, [student]); // Fetch data whenever classId changes
 
   if (loading) return <div className="flex justify-center items-center h-screen"><FaSpinner className="animate-spin text-3xl text-gray-600" /></div>;
-  if (error) return <div className="flex justify-center items-center h-screen text-red-600"><FaExclamationTriangle className="text-3xl" /><span className="ml-2">Error: {error}</span></div>;
 
   return (
     <div className="container mx-auto p-4 md:p-6 bg-gray-50 min-h-screen">

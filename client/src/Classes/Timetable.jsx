@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import studentId from '../config';
 
 const ViewTimetable = () => {
-  const { id } = useParams(); // Get the timetable ID from the URL
   const [timetable, setTimetable] = useState(null);
   const [filteredTimetable, setFilteredTimetable] = useState(null);
   const [student, setStudent] = useState(null);
@@ -12,7 +11,7 @@ const ViewTimetable = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/students/getStudents/66d18db1e677000e4ab754c8`);
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);

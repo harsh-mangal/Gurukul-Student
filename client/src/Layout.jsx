@@ -36,6 +36,8 @@ import ChangePassword from "./Profile/ChangePassword";
 import Homework from "./Dashboard/Homework";
 import TestSchedule from "./Dashboard/TestSchedule";
 import Login from "./Pages/Login";
+import SchoolAchievement from "./Profile/SchoolAchievement";
+import StudentAchievement from "./Profile/StudentAchievement";
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
@@ -103,7 +105,8 @@ const Layout = () => {
                           <Route path="/pending-fee" element={<PendingFees />} />
                           <Route path="/online-payment" element={<OnlinePayment />} />
                           <Route path="/view-profile" element={<ViewProfile />} />
-                          <Route path="/update-profile" element={<UpdateProfile />} />
+                          <Route path="/school-achievement" element={<SchoolAchievement />} />
+                          <Route path="/student-achievement" element={<StudentAchievement />} />
                           <Route path="/student-attendance" element={<Attendance />} />
                           <Route path="/change-password" element={<ChangePassword />} />
                           <Route path="*" element={<Navigate to="/login" />} />
