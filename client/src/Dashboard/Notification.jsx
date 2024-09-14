@@ -10,7 +10,7 @@ function StudentNotifications() {
     // Fetch notifications from the server
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get('https://project-5zck.onrender.com/api/notifications/getNotification');
+        const response = await axios.get('http://localhost:5000/api/notifications/getNotification');
         const allNotifications = response.data;
         const filteredNotifications = allNotifications
           .filter((notification) => notification.sendTo === 'students' || notification.sendTo === 'both')

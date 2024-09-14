@@ -24,7 +24,7 @@ const ExamDatesheet = () => {
   useEffect(() => {
     const fetchExamDatesheets = async () => {
       try {
-        const response = await axios.get(`https://project-5zck.onrender.com/api/exams/getExamByClass/10th`);
+        const response = await axios.get(`http://localhost:5000/api/exams/getExamByClass/10th`);
         console.log('API Response:', response.data); // Log the API response
         setExamDatesheets(response.data);
       } catch (err) {

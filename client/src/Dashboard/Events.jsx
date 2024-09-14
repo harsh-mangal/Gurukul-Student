@@ -18,7 +18,7 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://project-5zck.onrender.com/api/events/getEvents');
+        const response = await axios.get('http://localhost:5000/api/events/getEvents');
         setEvents(response.data);
         filterEventsByDate(selectedDate, response.data); // Filter events for the default date
       } catch (err) {

@@ -12,7 +12,7 @@ function StudentTestSchedule() {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get(`https://project-5zck.onrender.com/api/testschedules/getTestScheduleByClassNameAndSectionName/5th/Rose`);
+            const response = await axios.get(`http://localhost:5000/api/testschedules/getTestScheduleByClassNameAndSectionName/5th/Rose`);
             setTestSchedules(response.data);
         } catch (err) {
             setError('Failed to fetch test schedules');

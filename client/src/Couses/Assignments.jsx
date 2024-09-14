@@ -11,7 +11,7 @@ const CourseMaterialStudentPage = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);
@@ -25,7 +25,7 @@ const CourseMaterialStudentPage = () => {
     const fetchAssignments = async () => {
       try {
         const response = await axios.get(
-          `https://project-5zck.onrender.com/api/assignments/getAssignmentsByClassNameAndSectionName/${student.class}/${student.section}`
+          `http://localhost:5000/api/assignments/getAssignmentsByClassNameAndSectionName/${student.class}/${student.section}`
         );
         setAssignments(response.data);
         setLoading(false);
@@ -85,7 +85,7 @@ const CourseMaterialStudentPage = () => {
                   <a href={assignment.assignmentFile} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center text-sm sm:text-base">
                     <i className="fas fa-eye mr-2"></i>View
                   </a>
-                  <a href={`https://project-5zck.onrender.com/api/assignments/download/${assignment._id}`} download className="text-green-600 hover:underline flex items-center text-sm sm:text-base">
+                  <a href={`http://localhost:5000/api/assignments/download/${assignment._id}`} download className="text-green-600 hover:underline flex items-center text-sm sm:text-base">
                     <i className="fas fa-download mr-2"></i>Download
                   </a>
                 </div>

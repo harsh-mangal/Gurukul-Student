@@ -11,7 +11,7 @@ const CourseMaterial = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await axios.get(`https://project-5zck.onrender.com/api/students/getStudents/${studentId}`);
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
         setStudent(response.data);
       } catch (err) {
         console.error('Error fetching student:', err);
@@ -26,7 +26,7 @@ const CourseMaterial = () => {
       const fetchCourseMaterials = async () => {
         try {
           const response = await axios.get(
-            `https://project-5zck.onrender.com/api/coursematerial/getCourseMaterialByClassAndSection/${student.class}/${student.section}`
+            `http://localhost:5000/api/coursematerial/getCourseMaterialByClassAndSection/${student.class}/${student.section}`
           );
           setCourseMaterials(response.data);
           setLoading(false);
@@ -80,7 +80,7 @@ const CourseMaterial = () => {
                         <a href={material.courseMaterialFile} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline mr-2">
                           <i className="fas fa-eye"></i> View
                         </a>
-                        <a href={`https://project-5zck.onrender.com/api/coursematerial/download/${material._id}`} download className="text-green-600 hover:underline">
+                        <a href={`http://localhost:5000/api/coursematerial/download/${material._id}`} download className="text-green-600 hover:underline">
                           <i className="fas fa-download"></i> Download
                         </a>
                       </td>
@@ -108,7 +108,7 @@ const CourseMaterial = () => {
                   <a href={material.courseMaterialFile} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center text-sm sm:text-base">
                     <i className="fas fa-eye mr-2"></i>View
                   </a>
-                  <a href={`https://project-5zck.onrender.com/api/coursematerial/download/${material._id}`} download className="text-green-600 hover:underline flex items-center text-sm sm:text-base">
+                  <a href={`http://localhost:5000/api/coursematerial/download/${material._id}`} download className="text-green-600 hover:underline flex items-center text-sm sm:text-base">
                     <i className="fas fa-download mr-2"></i>Download
                   </a>
                 </div>
