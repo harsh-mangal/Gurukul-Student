@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import studentId from '../config'; // Assuming the studentId is correctly imported
 
-const CourseMaterialStudentPage = () => {
+const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState(null);
@@ -99,4 +99,4 @@ const CourseMaterialStudentPage = () => {
   );
 };
 
-export default CourseMaterialStudentPage;
+export default Assignments;

@@ -41,9 +41,9 @@ const CourseMaterial = () => {
   }, [student]);
 
   return (
-    <div className="container mx-auto p-2 sm:p-4">
-      <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-800 text-center mb-4 sm:mb-6 mt-4">
-        {student ? `Course Materials for ${student.class} (${student.section})` : 'Loading student details...'}
+    <div className="container mx-auto lg:p-3 sm:p-4">
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-4 sm:mb-6 mt-2 lg:mt-4 ">
+      <i class="lg:hidden fas fa-folder-open mr-2 text-sky-400"></i>{student ? `Course Materials for ${student.class}` : 'Loading student details...'}
       </h1>
 
       {loading ? (
@@ -94,15 +94,15 @@ const CourseMaterial = () => {
           {/* Card view for mobile screens */}
           <div className="lg:hidden grid grid-cols-1 gap-3 sm:gap-4">
             {courseMaterials.map((material, index) => (
-              <div key={material._id} className="bg-white shadow-md rounded-lg p-3 sm:p-4">
+              <div key={material._id} className="bg-white shadow-md rounded-lg p-2 sm:p-4">
                 <div className="flex items-center text-gray-700 text-sm sm:text-lg font-semibold mb-2">
-                  <i className="fas fa-book mr-2 text-blue-600"></i>{material.subjectName}
+                  <i className="fas fa-book mr-2 text-yellow-800"></i>{material.subjectName}
                 </div>
                 <div className="text-gray-700 text-sm sm:text-lg mb-2">
-                  <i className="fas fa-heading mr-2 text-blue-600"></i>{material.title}
+                  <i className="fas fa-heading mr-2 text-green-400"></i>{material.title}
                 </div>
                 <div className="text-gray-600 text-sm sm:text-base mb-4">
-                  <i className="fas fa-align-left mr-2 text-blue-600"></i>{material.description || 'No description'}
+                  <i className="fas fa-align-left mr-2 text-yellow-400"></i>{material.description || 'No description'}
                 </div>
                 <div className="flex space-x-4">
                   <a href={material.courseMaterialFile} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center text-sm sm:text-base">
