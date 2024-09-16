@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = ({ toggleSidebar }) => {
   const history = useNavigate();
   function handleLogout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('authToken');
     // If using React Router for navigation
    
-    history.push('/login'); // Redirect to the login page or desired route
+    history('/login'); // Redirect to the login page or desired route
     // Optionally: Clear any other user-specific state or context
 }
 
