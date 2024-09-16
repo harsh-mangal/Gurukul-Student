@@ -105,31 +105,43 @@ const ViewTimetable = () => {
   const timeSlots = calculateTimeSlots();
 
   return (
-    <div className="max-w-full mx-auto p-6 bg-white shadow-2xl rounded-lg mt-3">
-      <h1 className="text-2xl text-center font-bold mb-6">Timetable for Class: {filteredTimetable.className} ({filteredTimetable.sectionName})</h1>
+    <div className="max-w-full mx-auto p-4 bg-white shadow-lg rounded-lg lg:mt-3">
+      <h1 className="text-xl lg:text-2xl text-center font-bold mb-4">
+        Timetable for Class: {filteredTimetable.className} ({filteredTimetable.sectionName})
+      </h1>
 
       {/* Mobile View */}
       <div className="block md:hidden">
         {Object.keys(filteredTimetable.timetable).map((day) => (
-          <div key={day} className="mb-6">
-            <h2 className="text-xl font-bold mb-4">{day}</h2>
+          <div key={day} className="mb-4">
+            <h2 className="text-lg font-bold mb-2">{day}</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {timeSlots.map((slot, index) => {
                 const period = filteredTimetable.timetable[day][slot.serialNumber - 1] || {};
                 return (
-                  <div key={index} className="p-4 border rounded-lg shadow-md bg-gray-50">
-                    <div className="font-semibold text-lg mb-2">
-                      {slot.isAssembly
-                        ? `Assembly (${formatTime(slot.startTime, slot.endTime)})`
-                        : slot.isLunchBreak
-                        ? `Lunch Break (${formatTime(slot.startTime, slot.endTime)})`
-                        : `Period ${slot.serialNumber} (${formatTime(slot.startTime, slot.endTime)})`}
+                  <div key={index} className="p-2 border rounded-md shadow-sm bg-gray-100">
+                    <div className="font-semibold text-sm mb-1">
+                      {slot.isAssembly ? (
+                        <span>
+                          <i className="fas fa-users mr-1"></i> Assembly ({formatTime(slot.startTime, slot.endTime)})
+                        </span>
+                      ) : slot.isLunchBreak ? (
+                        <span>
+                          <i className="fas fa-utensils mr-1"></i> Lunch Break ({formatTime(slot.startTime, slot.endTime)})
+                        </span>
+                      ) : (
+                        <span>
+                          <i className="fas fa-clock mr-1"></i> Period {slot.serialNumber} ({formatTime(slot.startTime, slot.endTime)})
+                        </span>
+                      )}
                     </div>
                     {!slot.isAssembly && !slot.isLunchBreak && (
-                      <div className="text-sm">
+                      <div className="text-xs">
                         <div>{period.subject || '--'}</div>
-                        <div className="text-gray-500">Teacher: {period.teacher || '--'}</div>
+                        <div className="text-gray-500">
+                          <i className="fas fa-chalkboard-teacher mr-1"></i>Teacher: {period.teacher || '--'}
+                        </div>
                       </div>
                     )}
                   </div>

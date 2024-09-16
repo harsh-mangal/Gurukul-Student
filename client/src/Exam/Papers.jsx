@@ -65,7 +65,7 @@ function Papers() {
                 </h3>
                 <p className="text-gray-700 mb-2 sm:mb-4 text-sm sm:text-base">{paper.description}</p>
                 <div className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-4 flex items-center">
-                  <i className="fas fa-chalkboard text-yellow-500 mr-1 sm:mr-2"></i>
+                  <i className="lg:hidden fas fa-chalkboard text-yellow-500 mr-1 sm:mr-2"></i>
                   Subject: {paper.subjectName}
                 </div>
                 <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
