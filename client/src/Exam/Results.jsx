@@ -1,23 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import studentId from '../config'; // Assuming the studentId is correctly imported
+import { fetchAndRankStudentBySection, fetchAndRankStudentByClass } from './Rank.js'; // Adjust the path as necessary
 
 const Results = () => {
   const [studentResult, setStudentResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sectionRank, setSectionRank] = useState(null);
+  const [classRank, setClassRank] = useState(null);
 
+  const [student, setStudent] = useState(null);
+
+  // Fetch the student details
+  useEffect(() => {
+    const fetchStudent = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        setStudent(response.data);
+      } catch (err) {
+        console.error('Error fetching student:', err);
+      }
+    };
+
+    fetchStudent();
+  }, []);
   useEffect(() => {
     const fetchStudentResult = async () => {
       try {
+        // Fetch student result first to get the class
         const response = await axios.get(`http://localhost:5000/api/examresults/getExamResultByStudent/${studentId}`);
-        setStudentResult(response.data);
+        const student = response.data[0]; // Assuming data is an array and we want the first item
+    
+        if (student) {
+          const studentClass = student.className; // Extract student class
+    
+          // Fetch rank data using the student class
+          const sectionRanks = await fetchAndRankStudentBySection(studentClass); // Pass the class dynamically
+          const classRanks = await fetchAndRankStudentByClass(studentClass); // Pass the class dynamically
+    
+          // Set ranks based on the fetched data
+          setSectionRank(sectionRanks.rank || 'N/A');
+          
+          // Assuming classRanks object has structure like {10th: { rank: 4, studentName: 'sanjay Mangal' }}
+          const classRankData = classRanks[studentClass]; // Access the student class key
+          setClassRank(classRankData ? classRankData.rank : 'N/A');
+          
+          // Set student result
+          setStudentResult(response.data);
+        }
       } catch (error) {
         setError(error.response ? error.response.data.message : 'An error occurred');
       } finally {
         setLoading(false);
       }
     };
+    
 
     fetchStudentResult();
   }, [studentId]);
@@ -34,25 +72,25 @@ const Results = () => {
     return ((totalMarks / maxMarks) * 100).toFixed(2);
   };
 
-  if (loading)
-    return (
-      <div className="text-center mt-8 p-4 text-gray-700 text-sm">
-        Loading... <i className="fas fa-spinner fa-spin text-lg"></i>
-      </div>
-    );
-  if (error)
-    return <div className="text-center mt-8 p-4 text-red-500 text-sm">{error}</div>;
+  if (loading) return (
+    <div className="text-center mt-8 p-4 text-gray-700 text-sm">
+      Loading... <i className="fas fa-spinner fa-spin text-lg"></i>
+    </div>
+  );
+
+  if (error) return <div className="text-center mt-8 p-4 text-red-500 text-sm">{error}</div>;
 
   return (
     <div className="container mx-auto lg:mt-4 p-2 lg:p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center text-gray-800">
         <i className="lg:hidden fas fa-graduation-cap text-red-400 mr-2"></i>Exam Result
       </h2>
-      {studentResult.map((result) => {
+
+      {studentResult && studentResult.map((result) => {
         const totalMarks = calculateTotalMarks(result);
         const maxMarks = calculateMaximumMarks(result);
         const percentage = calculatePercentage(totalMarks, maxMarks);
-
+        
         return (
           <div key={result._id} className="p-2 lg:p-4 rounded-lg shadow hover:shadow-xl transition-shadow">
             <h3 className="text-s sm:text-xl font-semibold lg:mb-3 text-gray-700">
@@ -62,11 +100,21 @@ const Results = () => {
               <i className="lg:hidden fas fa-user text-sky-400 mr-2"></i>Name: {result.students[0].studentName}
             </p>
             <p className="text-sm sm:text-md">
-              <i className="lg:hidden fas fa-id-badge text-yellow-400 mr-2"></i>Roll No: {result.students[0].rollNo}
+              <i className="lg:hidden fas fa-id-badge text-yellow-8 00 mr-2"></i>Roll No: {result.students[0].rollNo}
             </p>
-            <p className="text-sm sm:text-md mb-2">
+            <p className="text-sm sm:text-md">
               <i className="lg:hidden fas fa-clipboard text-green-600 mr-2"></i>Remark: {result.students[0].remark}
             </p>
+
+            {/* Display ranks */}
+            <div className="mb-4">
+              <p className="text-sm sm:text-md">
+                <i className="fas fa-medal text-yellow-500 mr-2"></i>Section Rank: {sectionRank || 'N/A'}
+              </p>
+              <p className="text-sm sm:text-md">
+                <i className="fas fa-trophy text-yellow-500 mr-2"></i>Class Rank: {classRank || 'N/A'}
+              </p>
+            </div>
 
             <div className="overflow-x-auto">
               <table className="table-auto w-full bg-white border-collapse rounded-lg shadow-sm">
@@ -85,7 +133,7 @@ const Results = () => {
                       <td className="border px-3 py-2">{score.subjectName}</td>
                       <td className="border px-3 py-2">{score.score}</td>
                       <td className="border px-3 py-2">
-                        {result.subjects.find(subject => subject.subjectName === score.subjectName).totalMarks}
+                        {result.subjects.find(subject => subject.subjectName === score.subjectName)?.totalMarks}
                       </td>
                     </tr>
                   ))}
