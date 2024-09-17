@@ -43,7 +43,7 @@ const CourseMaterial = () => {
   return (
     <div className="container mx-auto lg:p-3 sm:p-4">
       <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 text-center mb-4 sm:mb-6 mt-2 lg:mt-4 ">
-      <i class="lg:hidden fas fa-folder-open mr-2 text-sky-400"></i>{student ? `Course Materials for ${student.class}` : 'Loading student details...'}
+      <i class="lg:hidden sm:hidden fas fa-folder-open mr-2 text-sky-400"></i>{student ? `Course Materials for ${student.class}` : 'Loading student details...'}
       </h1>
 
       {loading ? (
@@ -92,7 +92,7 @@ const CourseMaterial = () => {
           </div>
 
           {/* Card view for mobile screens */}
-          <div className="lg:hidden grid grid-cols-1 gap-3 sm:gap-4">
+          <div className="lg:hidden sm:hidden grid grid-cols-1 gap-3 sm:gap-4">
             {courseMaterials.map((material, index) => (
               <div key={material._id} className="bg-white shadow-md rounded-lg p-2 sm:p-4">
                 <div className="flex items-center text-gray-700 text-sm sm:text-lg font-semibold mb-2">

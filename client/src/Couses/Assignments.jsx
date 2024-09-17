@@ -42,7 +42,7 @@ const Assignments = () => {
     <div className="container mx-auto p-2 sm:p-4 bg-gray-50 min-h-screen">
       {/* Header */}
       <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center justify-center">
-        <i className="lg:hidden fas fa-book-open text-yellow-400 mr-2"></i>
+        <i className="lg:hidden sm:hidden fas fa-book-open text-yellow-400 mr-2"></i>
         Assignments for {student?.class} ({student?.section})
       </h1>
 
@@ -65,7 +65,7 @@ const Assignments = () => {
             >
               <div className="p-3 sm:p-4">
                 <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-2">
-                  <i className="lg:hidden fas fa-file-alt text-red-500 mr-2"></i>
+                  <i className="lg:hidden sm:hidden fas fa-file-alt text-red-500 mr-2"></i>
                   {assignment.assignmentTitle}
                 </h2>
                 <p className="text-sm sm:text-base text-gray-700 mb-1">

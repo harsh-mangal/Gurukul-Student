@@ -30,7 +30,7 @@ const ViewTimetable = () => {
 
           // Filter the timetable based on matching classes
           const filtered = fetchedTimetables.find(entry => entry.className === student.class && entry.sectionName === student.section);
-          
+
           // Set the filtered timetable to state
           setFilteredTimetable(filtered);
         })
@@ -105,16 +105,16 @@ const ViewTimetable = () => {
   const timeSlots = calculateTimeSlots();
 
   return (
-    <div className="max-w-full mx-auto p-4 bg-white shadow-lg rounded-lg lg:mt-3">
-      <h1 className="text-xl lg:text-2xl text-center font-bold mb-4">
-        Timetable for Class: {filteredTimetable.className} ({filteredTimetable.sectionName})
+    <div className="max-w-full mx-auto p-2 bg-white shadow-lg rounded-lg lg:mt-3">
+      <h1 className="text-xl lg:text-3xl text-center font-semibold mb-2 sm:mb-6">
+      <i class="fas fa-list-alt mr-2 text-purple-600 lg:hidden sm:hidden"></i>Timetable of {filteredTimetable.className} ({filteredTimetable.sectionName})
       </h1>
 
       {/* Mobile View */}
       <div className="block md:hidden">
         {Object.keys(filteredTimetable.timetable).map((day) => (
           <div key={day} className="mb-4">
-            <h2 className="text-lg font-bold mb-2">{day}</h2>
+            <h2 className="text-lg font-semibold mb-2">{day}</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {timeSlots.map((slot, index) => {
@@ -124,23 +124,26 @@ const ViewTimetable = () => {
                     <div className="font-semibold text-sm mb-1">
                       {slot.isAssembly ? (
                         <span>
-                          <i className="fas fa-users mr-1"></i> Assembly ({formatTime(slot.startTime, slot.endTime)})
+                          <i className="fas fa-users mr-1 text-blue-600 md:text-blue-400"></i>
+                          Assembly ({formatTime(slot.startTime, slot.endTime)})
                         </span>
                       ) : slot.isLunchBreak ? (
                         <span>
-                          <i className="fas fa-utensils mr-1"></i> Lunch Break ({formatTime(slot.startTime, slot.endTime)})
+                          <i className="fas fa-utensils mr-1 text-red-500 md:text-red-400"></i>
+                          Lunch Break ({formatTime(slot.startTime, slot.endTime)})
                         </span>
                       ) : (
                         <span>
-                          <i className="fas fa-clock mr-1"></i> Period {slot.serialNumber} ({formatTime(slot.startTime, slot.endTime)})
+                          <i className="fas fa-clock mr-1 text-green-600 md:text-green-400"></i>
+                          Period {slot.serialNumber} ({formatTime(slot.startTime, slot.endTime)})
                         </span>
                       )}
                     </div>
                     {!slot.isAssembly && !slot.isLunchBreak && (
                       <div className="text-xs">
-                        <div>{period.subject || '--'}</div>
-                        <div className="text-gray-500">
-                          <i className="fas fa-chalkboard-teacher mr-1"></i>Teacher: {period.teacher || '--'}
+                        <div>
+                          {period.subject || '--'} (<i className="fas fa-chalkboard-teacher mr-2 text-yellow-800 md:text-purple-400"></i>
+                          <span className='text-gray-500'>{period.teacher || '--'})</span>
                         </div>
                       </div>
                     )}
@@ -174,8 +177,8 @@ const ViewTimetable = () => {
                   {slot.isAssembly
                     ? `Assembly (${formatTime(slot.startTime, slot.endTime)})`
                     : slot.isLunchBreak
-                    ? `Lunch Break (${formatTime(slot.startTime, slot.endTime)})`
-                    : formatTime(slot.startTime, slot.endTime)}
+                      ? `Lunch Break (${formatTime(slot.startTime, slot.endTime)})`
+                      : formatTime(slot.startTime, slot.endTime)}
                 </td>
                 {Object.keys(filteredTimetable.timetable).map(day => {
                   const period = filteredTimetable.timetable[day][slot.serialNumber - 1] || {};

@@ -1,69 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // To get class and section from the URL
-import axios from 'axios';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import Font Awesome icons
 
-const HomeworkPage = () => {
-  const { className, sectionName } = useParams(); // Get class and section from URL params
-  const [homeworkData, setHomeworkData] = useState(null);
-  const [loading, setLoading] = useState(true);
+const Last30DaysWithScroll = () => {
+  const [last30Days, setLast30Days] = useState([]);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
-    // Fetch the homework data
-    const fetchHomework = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/homework/getHomeworkByClassAndSectionName/1st/Rose`
-        );
-        setHomeworkData(response.data);
-      } catch (error) {
-        console.error('Error fetching homework:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const today = new Date();
+    const daysArray = [];
 
-    fetchHomework();
+    for (let i = 0; i < 30; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - i);
+      daysArray.push(date.toISOString().split('T')[0]); // format to YYYY-MM-DD
+    }
+
+    setLast30Days(daysArray);
   }, []);
 
-  if (loading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
-  }
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -300, // Scroll 300px to the left
+        behavior: 'smooth',
+      });
+    }
+  };
 
-  if (!homeworkData) {
-    return <div className="text-center py-10">No homework found for this class and section.</div>;
-  }
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 300, // Scroll 300px to the right
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-center mb-4">
-          Homework for {className} - {sectionName}
-        </h1>
-        <p className="text-center text-gray-500 mb-6">
-          Assigned on: {homeworkData.dateAssigned}
-        </p>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-extrabold mb-6 text-center text-teal-600">
+        Last 30 Days
+      </h1>
+      <div className="flex items-center space-x-4">
+        {/* Left Scroll Button */}
+        <button
+          onClick={scrollLeft}
+          className="bg-teal-500 text-white p-3 rounded-full shadow-md hover:bg-teal-600 transition duration-300 flex items-center justify-center"
+        >
+          <FaChevronLeft className="text-xl" />
+        </button>
 
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              <th className="py-2 px-4 border-b">Sr No.</th>
-              <th className="py-2 px-4 border-b">Subject</th>
-              <th className="py-2 px-4 border-b">Homework</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(homeworkData.homework).map(([subject, homework], index) => (
-              <tr key={index} className="text-center">
-                <td className="py-2 px-4 border-b">{index + 1}</td>
-                <td className="py-2 px-4 border-b">{subject}</td>
-                <td className="py-2 px-4 border-b">{homework}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Scrollable Dates Container */}
+        <div
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto space-x-4 p-2 scrollbar-thin scrollbar-thumb-teal-400 scrollbar-track-gray-200"
+          style={{ scrollBehavior: 'smooth' }}
+        >
+          {last30Days.map((date, index) => (
+            <div
+              key={index}
+              className="min-w-[150px] bg-teal-200 text-center p-4 rounded-lg shadow-lg hover:bg-teal-300 transition duration-300 flex items-center justify-center"
+            >
+              <span className="text-lg font-medium text-gray-700">{date}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Right Scroll Button */}
+        <button
+          onClick={scrollRight}
+          className="bg-teal-500 text-white p-3 rounded-full shadow-md hover:bg-teal-600 transition duration-300 flex items-center justify-center"
+        >
+          <FaChevronRight className="text-xl" />
+        </button>
       </div>
     </div>
   );
 };
 
-export default HomeworkPage;
+export default Last30DaysWithScroll;

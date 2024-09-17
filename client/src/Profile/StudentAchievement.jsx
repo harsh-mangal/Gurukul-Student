@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import studentId from '../config';
 
-const StudentAchievementsPage = ({ className, sectionName }) => {
+const StudentAchievementsPage = () => {
   const [achievements, setAchievements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,23 +43,23 @@ const StudentAchievementsPage = ({ className, sectionName }) => {
 
   return (
     <div className="container mx-auto p-2 sm:p-6 lg:p-8">
-    <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-gray-800">
+    <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-6 text-center text-gray-800">
       <i className="fas fa-trophy text-yellow-500 mr-2 lg:hidden lg:inline"></i>
        Student Achievements
       </h1>
 
       {achievements.length === 0 ? (
         <div className="text-center text-lg">
-          <i className="fas fa-exclamation-circle text-red-500 mr-2 lg:hidden lg:inline"></i>
+          <i className="fas fa-exclamation-circle text-red-500 mr-2 lg:hidden sm:hidden lg:inline"></i>
           No achievements found for this class and section.
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {achievements.map((achievement) => (
-            <div key={achievement._id} className="bg-white shadow-md rounded-lg p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300">
+            <div key={achievement._id} className="bg-white shadow-md rounded-lg p-2 sm:p-4 hover:shadow-lg transition-shadow duration-300">
               <div className="flex items-center mb-2 sm:mb-4">
                 <i className="fas fa-award text-yellow-500 text-2xl sm:text-3xl mr-2 lg:hidden lg:inline"></i>
-                <h2 className="text-xl sm:text-2xl font-bold">{achievement.eventName}</h2>
+                <h2 className="text-sm sm:text-lg font-semibold">{achievement.eventName}</h2>
               </div>
               <p className="text-gray-600 text-sm sm:text-base mb-1">
                 <i className="far fa-calendar-alt text-blue-500 mr-1"></i>

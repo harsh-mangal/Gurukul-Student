@@ -42,7 +42,7 @@ function Subjects() {
 
   return (
     <div className="container mx-auto p-1 lg:p-4 md:p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-2 text-gray-900 border-b-2 border-blue-500 pb-2"><i class="lg:hidden fas fa-book-open mr-2 text-teal-500"></i>Subject Overview</h1>
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-2 text-gray-900 border-b-2 border-blue-500 pb-2"><i class="lg:hidden sm:hidden fas fa-book-open mr-2 text-teal-500"></i>Subject Overview</h1>
       {data.map((classData, index) => (
         <div key={index} className="bg-white shadow-lg rounded-lg p-4 md:p-6 mb-2 border border-gray-200">
           <h2 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800">Class: {classData.className}</h2>
@@ -51,7 +51,7 @@ function Subjects() {
             <ul className="list-disc pl-5 space-y-2">
               {classData.subjects.map((subject, idx) => (
                 <li key={idx} className="text-gray-600 flex items-center">
-                  <i className="lg:hidden fas fa-book mr-2 text-blue-500"></i>
+                  <i className="lg:hidden sm:hidden fas fa-book mr-2 text-blue-500"></i>
                   {subject.subjectName}
                 </li>
               ))}

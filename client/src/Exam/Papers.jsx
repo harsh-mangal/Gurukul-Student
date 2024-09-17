@@ -41,7 +41,7 @@ function Papers() {
       <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center justify-center">
         {student ? (
           <>
-            <i className="fas fa-file-alt text-blue-600 mr-2 lg:hidden text-lg"></i>
+            <i className="fas fa-file-alt text-purple-600 mr-2 lg:hidden sm:hidden text-lg"></i>
             Old Papers for {student.class} ({student.section})
           </>
         ) : (
@@ -60,12 +60,12 @@ function Papers() {
             <div key={paper._id} className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="p-4 sm:p-6">
                 <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">
-                  <i className="fas fa-book text-green-600 mr-2 lg:hidden text-lg"></i>
+                  <i className="fas fa-book text-green-600 mr-2 lg:hidden sm:hidden text-lg"></i>
                   {paper.title}
                 </h3>
                 <p className="text-gray-700 mb-2 sm:mb-4 text-sm sm:text-base">{paper.description}</p>
                 <div className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-4 flex items-center">
-                  <i className="lg:hidden fas fa-chalkboard text-yellow-500 mr-1 sm:mr-2"></i>
+                  <i className="lg:hidden sm:hidden fas fa-chalkboard text-yellow-500 mr-1 sm:mr-2"></i>
                   Subject: {paper.subjectName}
                 </div>
                 <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">

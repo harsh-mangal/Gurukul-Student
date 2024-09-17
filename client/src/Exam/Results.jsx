@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import studentId from '../config'; // Assuming the studentId is correctly imported
 import { fetchAndRankStudentBySection, fetchAndRankStudentByClass } from './Rank.js'; // Adjust the path as necessary
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'; // For table formatting
 
 const Results = () => {
   const [studentResult, setStudentResult] = useState(null);
@@ -79,11 +81,57 @@ const Results = () => {
   );
 
   if (error) return <div className="text-center mt-8 p-4 text-red-500 text-sm">{error}</div>;
+  const generatePDF = (result) => {
+    const doc = new jsPDF();
+
+    // Set the document properties and styles
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.text(`Exam Result for ${result.className} (${result.sectionName})`, 14, 20);
+    
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(12);
+    doc.text(`Exam: ${result.examName}`, 14, 30);
+    doc.text(`Name: ${result.students[0].studentName}`, 14, 35);
+    doc.text(`Roll No: ${result.students[0].rollNo}`, 14, 40);
+    doc.text(`Remark: ${result.students[0].remark || '--'}`, 14, 45);
+
+    // Add table
+  const tableColumn = ["Sr No.", "Subject", "Score", "Total Marks"];
+  const tableRows = result.students[0].scores.map((score, index) => [
+    index + 1,
+    score.subjectName,
+    score.score,
+    result.subjects.find(subject => subject.subjectName === score.subjectName).totalMarks,
+  ]);
+
+  doc.autoTable(tableColumn, tableRows, { startY: 50 });
+  
+  // Add total and percentage at the end
+  const totalMarks = result.students[0].scores.reduce((total, score) => total + score.score, 0);
+  const maxMarks = result.subjects.reduce((total, subject) => total + subject.totalMarks, 0);
+  const percentage = ((totalMarks / maxMarks) * 100).toFixed(2);
+
+  doc.text(`Total Marks: ${totalMarks}/${maxMarks}`, 14, doc.autoTable.previous.finalY + 10);
+  doc.text(`Percentage: ${percentage}%`, 14, doc.autoTable.previous.finalY + 20);
+
+  // Save the PDF
+  doc.save(`Exam_Result_${result.examName}.pdf`);
+};
+
+  if (loading)
+    return (
+      <div className="text-center mt-8 p-4 text-gray-700 text-sm">
+        Loading... <i className="fas fa-spinner fa-spin text-lg"></i>
+      </div>
+    );
+  if (error)
+    return <div className="text-center mt-8 p-4 text-red-500 text-sm">{error}</div>;
 
   return (
     <div className="container mx-auto lg:mt-4 p-2 lg:p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center text-gray-800">
-        <i className="lg:hidden fas fa-graduation-cap text-red-400 mr-2"></i>Exam Result
+        <i className="lg:hidden sm:hidden fas fa-graduation-cap text-green-600 mr-2"></i>Exam Result
       </h2>
 
       {studentResult && studentResult.map((result) => {
@@ -92,18 +140,22 @@ const Results = () => {
         const percentage = calculatePercentage(totalMarks, maxMarks);
         
         return (
-          <div key={result._id} className="p-2 lg:p-4 rounded-lg shadow hover:shadow-xl transition-shadow">
+          <div key={result._id} className="p-2 lg:p-4 rounded-lg shadow hover:shadow-xl transition-shadow mb-6">
             <h3 className="text-s sm:text-xl font-semibold lg:mb-3 text-gray-700">
               {result.className} ({result.sectionName}) - {result.examName}
             </h3>
             <p className="text-sm sm:text-md">
-              <i className="lg:hidden fas fa-user text-sky-400 mr-2"></i>Name: {result.students[0].studentName}
+              <i className="lg:hidden sm:hidden fas fa-user text-sky-400 mr-2"></i>Name: {result.students[0].studentName}
             </p>
             <p className="text-sm sm:text-md">
               <i className="lg:hidden fas fa-id-badge text-yellow-8 00 mr-2"></i>Roll No: {result.students[0].rollNo}
             </p>
             <p className="text-sm sm:text-md">
               <i className="lg:hidden fas fa-clipboard text-green-600 mr-2"></i>Remark: {result.students[0].remark}
+              <i className="lg:hidden sm:hidden fas fa-id-badge text-yellow-400 mr-2"></i>Roll No: {result.students[0].rollNo}
+            </p>
+            <p className="text-sm sm:text-md mb-2">
+              <i className="lg:hidden sm:hidden fas fa-clipboard text-red-400 mr-2"></i>Remark: {result.students[0].remark}
             </p>
 
             {/* Display ranks */}
@@ -153,6 +205,16 @@ const Results = () => {
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            {/* Button to download PDF for each result */}
+            <div className="flex justify-end mt-4">
+            <button
+              className="bg-blue-800 hover:bg-blue-600 text-white py-2 px-2 rounded"
+              onClick={() => generatePDF(result)}
+            >
+              Download PDF for {result.examName}
+            </button>
             </div>
           </div>
         );
