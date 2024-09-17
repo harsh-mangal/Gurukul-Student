@@ -26,31 +26,31 @@ const AchievementsPage = () => {
 
     return (
         <div className="container mx-auto p-2 sm:p-6 lg:p-8">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-gray-800">
-                <i className="lg:hidden fas fa-award text-red-500 mr-2 sm:mr-2 text-xl sm:text-2xl"></i>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-6 text-center text-gray-800">
+                <i className="sm:hidden fas fa-award text-red-500 mr-2 sm:mr-2 text-xl sm:text-2xl"></i>
                 School Achievements
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {achievements.map((achievement) => (
-                    <div key={achievement._id} className="bg-white p-3 sm:p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div key={achievement._id} className="bg-white p-2 sm:p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div className="flex items-center mb-2 sm:mb-4">
-                            <i className="lg:hidden fas fa-trophy text-yellow-500 mr-1 sm:mr-2 text-lg sm:text-xl"></i>
-                            <h2 className="text-xl sm:text-2xl font-bold">{achievement.competitionTitle}</h2>
+                            <i className="sm:hidden fas fa-trophy text-yellow-500 mr-1 sm:mr-2 text-lg sm:text-xl"></i>
+                            <h2 className="text-sm sm:text-lg font-semibold">{achievement.competitionTitle}</h2>
                         </div>
                         <p className="text-gray-600 text-sm sm:text-base mb-1">
                             <i className="far fa-calendar-alt text-blue-500 mr-1"></i>
                             {new Date(achievement.date).toLocaleDateString()}
                         </p>
                         <p className="text-gray-700 mb-1 sm:mb-2 text-sm sm:text-base">
-                            <i className="lg:hidden fas fa-place-of-worship text-yellow-800 mr-1 sm:mr-2 text-sm sm:text-base"></i>
+                            <i className="sm:hidden fas fa-place-of-worship text-yellow-800 mr-1 sm:mr-2 text-sm sm:text-base"></i>
                             <strong>Place:</strong> {achievement.place}
                         </p>
                         <p className="text-gray-700 mb-1 sm:mb-2 text-sm sm:text-base">
-                            <i className="lg:hidden fas fa-school text-red-500 mr-1 sm:mr-2 text-sm sm:text-base"></i>
+                            <i className="sm:hidden fas fa-school text-red-500 mr-1 sm:mr-2 text-sm sm:text-base"></i>
                             <strong>School Rank:</strong> {achievement.schoolRank}
                         </p>
                         <p className="text-gray-700 mb-2 text-sm sm:text-base">
-                            <i className="lg:hidden fas fa-info-circle text-green-500 mr-1 sm:mr-2 text-sm sm:text-base"></i>
+                            <i className="sm:hidden fas fa-info-circle text-green-500 mr-1 sm:mr-2 text-sm sm:text-base"></i>
                             <strong>Description:</strong> {achievement.description}
                         </p>
                         {achievement.image && (
