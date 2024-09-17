@@ -54,7 +54,7 @@ const ExamDatesheet = () => {
   return (
     <div className="max-w-full mx-auto p-2 lg:p-4 bg-white shadow-2xl rounded-lg lg:mt-3">
       <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 sm:mb-4 lg:mb-6">
-        <i className="sm:hidden mr-2 fas fa-calendar-alt text-blue-600 sm:text-blue-800"></i> Datesheets for {student.class} class
+        <i className="lg:hidden sm:hidden mr-2 fas fa-calendar-alt text-blue-600 sm:text-blue-800"></i> Datesheets for {student.class} class
       </h2>
 
       {examDatesheets.map((examDatesheet, index) => {
@@ -67,7 +67,7 @@ const ExamDatesheet = () => {
         return (
           <div key={index} className="mb-8">
             <h3 className="text-lg sm:text-xl font-semibold mb-4">
-              <i className="sm:hidden mr-2 fas fa-file-alt text-green-600 sm:text-green-800"></i> Exam: {examDatesheet.examName}
+              <i className="lg:hidden sm:hidden mr-2 fas fa-file-alt text-green-600 sm:text-green-800"></i> Exam: {examDatesheet.examName}
             </h3>
 
             {/* Add responsive scrolling for the table */}

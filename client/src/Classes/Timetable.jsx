@@ -107,7 +107,7 @@ const ViewTimetable = () => {
   return (
     <div className="max-w-full mx-auto p-2 bg-white shadow-lg rounded-lg lg:mt-3">
       <h1 className="text-xl lg:text-3xl text-center font-semibold mb-2 sm:mb-6">
-      <i class="fas fa-list-alt mr-2 text-purple-600 sm:hidden"></i>Timetable of {filteredTimetable.className} ({filteredTimetable.sectionName})
+      <i class="fas fa-list-alt mr-2 text-purple-600 lg:hidden sm:hidden"></i>Timetable of {filteredTimetable.className} ({filteredTimetable.sectionName})
       </h1>
 
       {/* Mobile View */}
