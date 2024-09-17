@@ -41,7 +41,7 @@ function Papers() {
       <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-4 sm:mb-6 flex items-center justify-center">
         {student ? (
           <>
-            <i className="fas fa-file-alt text-blue-600 mr-2 lg:hidden sm:hidden text-lg"></i>
+            <i className="fas fa-file-alt text-purple-600 mr-2 lg:hidden sm:hidden text-lg"></i>
             Old Papers for {student.class} ({student.section})
           </>
         ) : (

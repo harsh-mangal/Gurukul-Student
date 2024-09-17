@@ -46,7 +46,7 @@ const Results = () => {
   return (
     <div className="container mx-auto lg:mt-4 p-2 lg:p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center text-gray-800">
-        <i className="lg:hidden sm:hidden fas fa-graduation-cap text-red-400 mr-2"></i>Exam Result
+        <i className="lg:hidden sm:hidden fas fa-graduation-cap text-green-600 mr-2"></i>Exam Result
       </h2>
       {studentResult.map((result) => {
         const totalMarks = calculateTotalMarks(result);
@@ -65,7 +65,7 @@ const Results = () => {
               <i className="lg:hidden sm:hidden fas fa-id-badge text-yellow-400 mr-2"></i>Roll No: {result.students[0].rollNo}
             </p>
             <p className="text-sm sm:text-md mb-2">
-              <i className="lg:hidden sm:hidden fas fa-clipboard text-green-600 mr-2"></i>Remark: {result.students[0].remark}
+              <i className="lg:hidden sm:hidden fas fa-clipboard text-red-400 mr-2"></i>Remark: {result.students[0].remark}
             </p>
 
             <div className="overflow-x-auto">

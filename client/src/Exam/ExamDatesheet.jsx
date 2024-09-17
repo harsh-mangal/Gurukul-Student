@@ -53,8 +53,8 @@ const ExamDatesheet = () => {
 
   return (
     <div className="max-w-full mx-auto p-2 lg:p-4 bg-white shadow-2xl rounded-lg lg:mt-3">
-      <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 sm:mb-4 lg:mb-6">
-        <i className="lg:hidden sm:hidden mr-2 fas fa-calendar-alt text-blue-600 sm:text-blue-800"></i> Datesheets for {student.class} class
+      <h2 className="text-xl sm:text-2xl font-semibold text-center mb-2 sm:mb-4 lg:mb-6">
+        <i className="lg:hidden sm:hidden mr-2 fas fa-calendar-alt text-red-500 sm:text-blue-800"></i> Datesheets for {student.class} class
       </h2>
 
       {examDatesheets.map((examDatesheet, index) => {

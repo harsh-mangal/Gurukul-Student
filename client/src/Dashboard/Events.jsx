@@ -58,11 +58,11 @@ const Events = () => {
     };
   
     return (
-      <div className="min-h-screen p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col items-center">
-        <div className="bg-white shadow-xl rounded-lg p-4 sm:p-6 md:p-8 w-full max-w-md sm:max-w-3xl lg:max-w-5xl mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-black mb-6 sm:mb-8 text-center">
-            Event Calendar
-          </h2>
+      <div className="min-h-screen p-2 sm:p-6 lg:p-8 flex flex-col items-center">
+        <div className="bg-white shadow-xl rounded-lg sm:p-6 md:p-8 w-full max-w-md sm:max-w-3xl lg:max-w-5xl mb-4">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-6 text-center text-gray-800">
+          <i className="md:hidden fas fa-calendar-alt mr-2 text-green-600"></i>Event Calendar
+          </h1>
   
           {/* Calendar and Event Section */}
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
