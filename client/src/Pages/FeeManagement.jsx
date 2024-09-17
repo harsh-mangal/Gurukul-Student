@@ -57,21 +57,6 @@ const FeeManagement = () => {
                     </div>
                   </div>
                 </Link>
-
-                {/* Online Fee Payment */}
-                <Link to="/online-payment" className="block">
-                  <div className="bg-white shadow-lg rounded-xl p-5 hover:shadow-xl transition duration-300 transform hover:scale-105 flex items-center">
-                    <i className="fas fa-credit-card text-pink-500 text-4xl mr-4"></i>
-                    <div>
-                      <h2 className="text-xl font-bold text-blue-900">
-                        Online Fee Payment
-                      </h2>
-                      <p className="text-gray-600 text-sm">
-                        Pay your fees securely online.
-                      </p>
-                    </div>
-                  </div>
-                </Link>
               </div>
             </div>
           </div>
@@ -111,21 +96,6 @@ const FeeManagement = () => {
                     </div>
                     <p className="text-gray-700">
                       View the remaining fees to be paid.
-                    </p>
-                  </div>
-                </Link>
-
-                {/* Online Fee Payment */}
-                <Link to="/online-payment">
-                  <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
-                    <div className="flex items-center mb-4">
-                      <i className="fas fa-credit-card text-blue-800 text-3xl mr-3"></i>
-                      <h2 className="text-2xl font-semibold text-black">
-                        Online Fee Payment
-                      </h2>
-                    </div>
-                    <p className="text-gray-700">
-                      Pay your fees securely online.
                     </p>
                   </div>
                 </Link>

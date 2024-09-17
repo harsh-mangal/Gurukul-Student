@@ -38,8 +38,13 @@ const StudentLedger = () => {
   const { entries = [] } = ledger || {};
 
   return (
-    <div className="p-6 bg-gray-50 rounded-lg shadow-lg max-w-7xl mx-auto mt-6">
-      <h3 className="text-2xl font-semibold text-center mb-6 text-gray-800">Student Ledger</h3>
+    <div className="p-2 sm:p-6rounded-lg shadow-lg max-w-7xl mx-auto mt-2">
+      <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2 sm:mb-6 text-gray-800">
+        <span className="sm:hidden text-blue-500 mr-2">
+          <i className="fas fa-file-alt"></i> {/* Mobile Icon */}
+        </span>
+        Student Ledger
+      </h3>
 
       <div className="hidden md:block">
         {/* Desktop Table View */}
@@ -79,24 +84,26 @@ const StudentLedger = () => {
         {/* Mobile Card View */}
         {entries.length > 0 ? (
           entries.map((entry, index) => (
-            <div key={index} className="mb-4 bg-white p-4 rounded-lg shadow-md">
-              <div className="mb-2">
-                <span className="font-semibold">Date: </span>{new Date(entry.date).toLocaleDateString()}
-              </div>
-              <div className="mb-2">
-                <span className="font-semibold">Receipt Number: </span>{entry.receiptNumber || '-'}
-              </div>
-              <div className="mb-2">
-                <span className="font-semibold">Description: </span>{entry.description}
-              </div>
-              <div className="mb-2">
-                <span className="font-semibold">Debit Amount: </span>{entry.debitAmount ? entry.debitAmount.toLocaleString('en-IN') : '-'}
-              </div>
-              <div className="mb-2">
-                <span className="font-semibold">Credit Amount: </span>{entry.creditAmount ? entry.creditAmount.toLocaleString('en-IN') : '-'}
-              </div>
-              <div>
-                <span className="font-semibold">Balance: </span>{entry.balance.toLocaleString('en-IN')}
+            <div key={index} className="mb-4 bg-white p-2 rounded-lg shadow-md border border-gray-200">
+              <div className="flex flex-col space-y-2">
+                <div className="text-gray-800">
+                  <span className="font-semibold">Date: </span>{new Date(entry.date).toLocaleDateString()}
+                </div>
+                <div className="text-gray-800">
+                  <span className="font-semibold">Receipt Number: </span>{entry.receiptNumber || '-'}
+                </div>
+                <div className="text-gray-800">
+                  <span className="font-semibold">Description: </span>{entry.description}
+                </div>
+                <div className="text-gray-800">
+                  <span className="font-semibold">Debit Amount: </span>{entry.debitAmount ? entry.debitAmount.toLocaleString('en-IN') : '-'}
+                </div>
+                <div className="text-gray-800">
+                  <span className="font-semibold">Credit Amount: </span>{entry.creditAmount ? entry.creditAmount.toLocaleString('en-IN') : '-'}
+                </div>
+                <div className="text-gray-800">
+                  <span className="font-semibold">Balance: </span>{entry.balance.toLocaleString('en-IN')}
+                </div>
               </div>
             </div>
           ))
