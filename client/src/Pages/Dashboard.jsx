@@ -9,20 +9,20 @@ const Dashboard = () => {
         {/* Header for larger screens */}
         <header className="mb-8 hidden sm:block">
           <h1 className="text-4xl font-bold text-black">Student Dashboard</h1>
-         
+
         </header>
-        <Studentinfo/>
+        <Studentinfo />
         {/* Grid layout for larger screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 hidden sm:grid">
-          
-          {/* Academic Performance */}
-          <Link to="/academic-performance">
+
+          {/* Student Achievement */}
+          <Link to="/student-achievement">
             <div className="bg-white shadow-md rounded-lg p-6 hover:bg-gray-50 transition duration-200">
               <div className="flex items-center mb-4">
-                <i className="fas fa-book text-blue-800 text-3xl mr-3"></i>
-                <h2 className="text-2xl font-semibold text-black">Academic Performance</h2>
+                <i className="fas fa-trophy text-blue-800 text-3xl mr-3"></i>
+                <h2 className="text-2xl font-semibold text-black">Student Achievement</h2>
               </div>
-              <p className="text-gray-700">View and analyze your grades and academic progress.</p>
+              <p className="text-gray-700">View your personal achievements.</p>
             </div>
           </Link>
 
@@ -73,19 +73,19 @@ const Dashboard = () => {
 
         {/* Mobile View: Icons and text for smaller screens */}
         <div className="grid grid-cols-2 gap-6 sm:hidden">
-          {/* Academic Performance */}
-          <Link to="/academic-performance">
-            <div className="bg-blue-100 shadow-md rounded-lg p-4 flex flex-col justify-center items-center hover:bg-blue-200 transition duration-200">
-              <i className="fas fa-book text-blue-800 text-4xl mb-2"></i>
-              <span className="text-sm text-blue-800 font-semibold">Academic Performance</span>
+          {/* Student Achievement */}
+          <Link to="/student-achievement">
+            <div className="bg-yellow-100 shadow-md rounded-lg p-4 flex flex-col justify-center items-center hover:bg-yellow-200 transition duration-200">
+              <i className="fas fa-trophy text-yellow-600 text-4xl mb-2"></i>
+              <span className="text-sm text-yellow-600 font-semibold">Student Achievement</span>
             </div>
           </Link>
 
           {/* Notifications */}
           <Link to="/notifications-announcements">
-            <div className="bg-yellow-100 shadow-md rounded-lg p-4 flex flex-col justify-center items-center hover:bg-yellow-200 transition duration-200">
-              <i className="fas fa-bell text-yellow-600 text-4xl mb-2"></i>
-              <span className="text-sm text-yellow-600 font-semibold">Notifications</span>
+            <div className="bg-blue-100 shadow-md rounded-lg p-4 flex flex-col justify-center items-center hover:bg-blue  -200 transition duration-200">
+              <i className="fas fa-bell text-blue-800 text-4xl mb-2"></i>
+              <span className="text-sm text-blue-800 font-semibold">Notifications</span>
             </div>
           </Link>
 
