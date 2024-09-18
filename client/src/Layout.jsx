@@ -38,6 +38,7 @@ import TestSchedule from "./Dashboard/TestSchedule";
 import Login from "./Pages/Login";
 import SchoolAchievement from "./Profile/SchoolAchievement";
 import StudentAchievement from "./Profile/StudentAchievement";
+import SchoolAbout from "./Dashboard/SchoolAbout";
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
@@ -84,6 +85,7 @@ const Layout = () => {
                           <Route path="/student/feemanagement" element={<FeeManagement />} />
                           <Route path="/student/profile" element={<Profile />} />
                           <Route path="/student/support" element={<Support />} />
+                          <Route path="/aboutschool" element={<SchoolAbout />} />
                           {/* Other routes */}
                           <Route path="/academic-performance" element={<AcademicPerformance />} />
                           <Route path="/notifications-announcements" element={<Notification />} />

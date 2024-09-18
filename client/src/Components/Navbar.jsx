@@ -31,7 +31,7 @@ const Navbar = ({ toggleSidebar }) => {
   };
 
   return (
-    <nav className="bg-blue-800 p-4 flex justify-between items-center shadow-md">
+    <nav className="bg-blue-800 p-4 top-0 fixed w-full flex justify-between items-center shadow-md">
       <div className="flex items-center text-white">
         {/* Only render the school name and logo once the data is loaded */}
         {isSchoolDataLoaded && (

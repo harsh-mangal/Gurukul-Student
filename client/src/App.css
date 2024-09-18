@@ -11,7 +11,6 @@ body, html, #root {
 
 .navbar {
   flex-shrink: 0;
-  position: fixed;
 }
 
 .content-container {
@@ -28,9 +27,9 @@ body, html, #root {
   flex: 1;
   /* position: fixed; */
    /* Adjust as necessary */
-  padding-top: 2px !important;
+  padding-top: 80px !important;
   overflow-y: auto;
-  max-height: 80vh !important;
+  max-height: 88vh !important;
 }
 
 .footer {

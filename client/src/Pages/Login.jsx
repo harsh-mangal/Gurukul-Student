@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode'; // Adjust import based on your setup
 import { useNavigate } from 'react-router-dom';
-import { 
-  fetchSchoolData, 
-  getSchoolName, 
-  getLogo, 
-  getAddress 
-} from '../Schoolinfo.js'; // Adjust the path to the actual file
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -14,23 +9,8 @@ const Login = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [deactivationMessage, setDeactivationMessage] = useState('');
-  const [isSchoolDataLoaded, setIsSchoolDataLoaded] = useState(false);
-
+  
   const navigate = useNavigate(); // Use useNavigate for redirection
-
-  // Fetch school data when component mounts
-  useEffect(() => {
-    const loadSchoolData = async () => {
-      try {
-        await fetchSchoolData();
-        setIsSchoolDataLoaded(true); // Set the state to indicate school data is loaded
-      } catch (error) {
-        console.error('Error loading school data:', error);
-      }
-    };
-
-    loadSchoolData();
-  }, []); // Empty dependency array ensures this runs once on mount
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,12 +26,27 @@ const Login = () => {
       });
 
       if (response.data.token) {
-        // Handle login logic
+        // Decode the token to get student ID
+        const decodedToken = jwtDecode(response.data.token);
+        const studentId = decodedToken.userId; // Adjust according to your token payload structure
+
+        // Fetch student status
+        const statusResponse = await axios.get(`http://localhost:5000/api/students/getStudents/${studentId}`);
+        
+        if (statusResponse.data.status === 'inactive') {
+          setDeactivationMessage('Student is deactivated.');
+          // Clear the token from localStorage
+          localStorage.removeItem('authToken');
+        } else {
+          // Store the token (e.g., in localStorage)
+          localStorage.setItem('authToken', response.data.token);
+          navigate('/student/dashboard'); // Redirect using navigate
+        }
       } else {
         setError('Login failed. Please check your credentials.');
       }
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('Login error:', err); // Log the error for debugging
       setError('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -61,18 +56,16 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-80">
-        {/* Only render the school details once they are loaded */}
-        {isSchoolDataLoaded && (
-          <div className="text-center mb-6">
-            <img
-              src={getLogo()} // Get the logo URL from schoolService
-              alt="School Logo"
-              className="mx-auto mb-4"
-            />
-            <h1 className="text-2xl font-bold text-gray-800">{getSchoolName()}</h1> {/* Get the school name */}
-            <p className="text-sm text-gray-600">{getAddress()}</p> {/* Get the address */}
-          </div>
-        )}
+        {/* School Logo, Name, and Address */}
+        <div className="text-center mb-6">
+          <img
+            src="https://via.placeholder.com/100" // Replace with actual logo URL
+            alt="School Logo"
+            className="mx-auto mb-4"
+          />
+          <h1 className="text-2xl font-bold text-gray-800">School Name</h1>
+          <p className="text-sm text-gray-600">1234 School Address, City, Country</p>
+        </div>
 
         {/* Error Message */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
