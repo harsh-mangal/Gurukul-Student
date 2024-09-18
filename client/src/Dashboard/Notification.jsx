@@ -45,7 +45,7 @@ function Notification() {
     <div className="min-h-screen flex flex-col items-center sm:p-2">
       <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-2 sm:p-4 sm:mt-8">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 mb-3 sm:mb-4 md:mb-6 text-center">
-        <i class="md:hidden fas fa-bell mr-2 text-yellow-400"></i>Student Notifications
+        <i class="md:hidden fas fa-bell mr-2 text-blue-800"></i>Student Notifications
         </h2>
 
         {/* Loader while fetching */}
