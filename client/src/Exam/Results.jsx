@@ -4,7 +4,7 @@ import studentId from '../config'; // Assuming the studentId is correctly import
 import { fetchAndRankStudentBySection, fetchAndRankStudentByClass } from './Rank.js'; // Adjust the path as necessary
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // For table formatting
-
+ 
 const Results = () => {
   const [studentResult, setStudentResult] = useState(null);
   const [loading, setLoading] = useState(true);
