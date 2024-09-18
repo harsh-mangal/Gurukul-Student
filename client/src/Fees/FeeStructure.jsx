@@ -30,7 +30,7 @@ const FeeStructure = () => {
   if (error) return <div className="text-center mt-8 text-red-500 text-sm">{error}</div>;
 
   return (
-    <div className="container mx-auto p-2">
+    <div className="container mx-auto p-2 max-h-screen">
       <h1 className="text-2xl md:text-3xl font-bold text-center"><i class="md:hidden fas fa-layer-group mr-2 text-red-400"></i>Fee Structure</h1>
 
       {/* For larger screens: Laptop/Desktop */}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Studentinfo from '../Components/Studentinfo';
+import TodayThoughts from '../Components/TodayThoughts';
+import ContactDiv from '../Components/ContactDiv';
 
 const Dashboard = () => {
   return (
@@ -11,7 +13,9 @@ const Dashboard = () => {
           <h1 className="text-4xl font-bold text-black">Student Dashboard</h1>
 
         </header>
+       
         <Studentinfo />
+        <TodayThoughts/>
         {/* Grid layout for larger screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 hidden sm:grid">
 
@@ -118,9 +122,10 @@ const Dashboard = () => {
               <span className="text-sm text-pink-600 font-semibold">About School</span>
             </div>
           </Link>
-
+      
         </div>
       </div>
+     <ContactDiv/>
     </div>
   );
 };

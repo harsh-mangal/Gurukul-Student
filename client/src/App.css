@@ -11,6 +11,7 @@ body, html, #root {
 
 .navbar {
   flex-shrink: 0;
+
 }
 
 .content-container {
@@ -25,13 +26,18 @@ body, html, #root {
 
 .main-content {
   flex: 1;
-  /* position: fixed; */
    /* Adjust as necessary */
-  padding-top: 80px !important;
+  padding-top: 2px !important;
   overflow-y: auto;
-  max-height: 88vh !important;
+  min-height: 90vh !important;
 }
 
 .footer {
   flex-shrink: 0;
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 99;
+  }
 }
