@@ -16,7 +16,7 @@ const ExamResults = () => {
   }, []);
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="max-h-screen p-4">
       <div className="mx-auto">
         {isMobile ? (
           // Mobile layout (app-like)

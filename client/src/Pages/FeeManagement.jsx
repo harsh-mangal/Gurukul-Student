@@ -62,7 +62,7 @@ const FeeManagement = () => {
           </div>
         ) : (
           // Desktop layout
-          <div className="min-h-screen p-6">
+          <div className="max-h-screen p-6">
             <div className="max-w-full mx-auto">
               <header className="mb-8">
                 <h1 className="text-4xl font-bold text-black">

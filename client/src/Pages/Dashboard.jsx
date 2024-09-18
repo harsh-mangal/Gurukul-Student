@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Studentinfo from '../Components/Studentinfo';
+import TodayThoughts from '../Components/TodayThoughts';
+import ContactDiv from '../Components/ContactDiv';
 
 const Dashboard = () => {
   return (
@@ -11,7 +13,9 @@ const Dashboard = () => {
           <h1 className="text-4xl font-bold text-black">Student Dashboard</h1>
 
         </header>
+       
         <Studentinfo />
+        <TodayThoughts/>
         {/* Grid layout for larger screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 hidden sm:grid">
 
@@ -77,7 +81,7 @@ const Dashboard = () => {
           <Link to="/student-achievement">
             <div className="bg-yellow-100 shadow-md rounded-lg p-4 flex flex-col justify-center items-center hover:bg-yellow-200 transition duration-200">
               <i className="fas fa-trophy text-yellow-600 text-4xl mb-2"></i>
-              <span className="text-sm text-yellow-600 font-semibold">Student Achievement</span>
+              <span className="text-sm text-yellow-600 font-semibold">Achievement</span>
             </div>
           </Link>
 
@@ -112,8 +116,16 @@ const Dashboard = () => {
               <span className="text-sm text-purple-600 font-semibold">Test Schedule</span>
             </div>
           </Link>
+          <Link to="/aboutschool">
+            <div className="bg-pink-200 shadow-md rounded-lg p-4 flex flex-col justify-center items-center hover:bg-teal-200 transition duration-200">
+              <i className="fas fa-clock text-pink-600 text-4xl mb-2"></i>
+              <span className="text-sm text-pink-600 font-semibold">About School</span>
+            </div>
+          </Link>
+      
         </div>
       </div>
+     <ContactDiv/>
     </div>
   );
 };

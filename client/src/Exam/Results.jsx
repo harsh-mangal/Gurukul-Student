@@ -4,7 +4,7 @@ import studentId from '../config'; // Assuming the studentId is correctly import
 import { fetchAndRankStudentBySection, fetchAndRankStudentByClass } from './Rank.js'; // Adjust the path as necessary
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // For table formatting
-
+ 
 const Results = () => {
   const [studentResult, setStudentResult] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -149,10 +149,6 @@ const Results = () => {
             </p>
             <p className="text-sm sm:text-md">
               <i className="lg:hidden fas fa-id-badge text-yellow-8 00 mr-2"></i>Roll No: {result.students[0].rollNo}
-            </p>
-            <p className="text-sm sm:text-md">
-              <i className="lg:hidden fas fa-clipboard text-green-600 mr-2"></i>Remark: {result.students[0].remark}
-              <i className="lg:hidden sm:hidden fas fa-id-badge text-yellow-400 mr-2"></i>Roll No: {result.students[0].rollNo}
             </p>
             <p className="text-sm sm:text-md mb-2">
               <i className="lg:hidden sm:hidden fas fa-clipboard text-red-400 mr-2"></i>Remark: {result.students[0].remark}

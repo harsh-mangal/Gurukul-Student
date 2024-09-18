@@ -30,7 +30,7 @@ const FeeStructure = () => {
   if (error) return <div className="text-center mt-8 text-red-500 text-sm">{error}</div>;
 
   return (
-    <div className="container mx-auto p-2">
+    <div className="container mx-auto p-2 max-h-screen">
       <h1 className="text-2xl md:text-3xl font-bold text-center"><i class="md:hidden fas fa-layer-group mr-2 text-red-400"></i>Fee Structure</h1>
 
       {/* For larger screens: Laptop/Desktop */}
@@ -83,11 +83,11 @@ const FeeStructure = () => {
       </div>
 
       {/* For smaller screens: Mobile/Tablet */}
-      <div className="lg:hidden">
+      <div className="lg:hidden max-h-screen">
         {feeData.map((data, index) => (
           <div
             key={index}
-            className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg shadow-lg p-2 mb-4 transition-all duration-300 transform hover:scale-105"
+            className=" max-h-screen bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg shadow-lg p-2 mb-4 transition-all duration-300 transform hover:scale-105"
           >
             <h2 className="text-xl font-bold mb-2 flex items-center text-sm">
               <FaBook className="mr-2" /> Class: {data.class}
@@ -102,7 +102,7 @@ const FeeStructure = () => {
               <FaBook className="mr-2" /> Medium: <span className="font-medium">{data.medium}</span>
             </p>
             
-            <div className="bg-white text-gray-800 p-2 rounded-lg shadow-inner mb-4 text-sm">
+            <div className=" max-h-screen bg-white text-gray-800 p-2 rounded-lg shadow-inner mb-4 text-sm">
               <h3 className="text-sm font-semibold mb-1 text-indigo-600 flex items-center">
                 <FaBook className="mr-2" /> Fee Head Details
               </h3>

@@ -18,7 +18,7 @@ const BottomNav = () => {
       </Link>
       <Link to="/student/examresults" className="flex-1 text-center py-3 transition-all duration-300 hover:bg-blue-700 rounded-lg mx-1">
         <i className="fas fa-cogs text-2xl"></i>
-        <span className="block text-xs mt-1">Exam Results</span>
+        <span className="block text-xs mt-1">Exam</span>
       </Link>
       <Link to="/student/feemanagement" className="flex-1 text-center py-3 transition-all duration-300 hover:bg-blue-700 rounded-lg mx-1">
         <i className="fas fa-money-bill-wave text-2xl"></i>
