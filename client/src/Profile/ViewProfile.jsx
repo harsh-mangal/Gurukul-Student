@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import studentId from '../config';
 
-const StudentProfile = () => {
+const ViewProfile = () => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -472,4 +472,9 @@ const StudentProfile = () => {
   );
 };
 
+<<<<<<< HEAD
 export default StudentProfile;
+=======
+export default ViewProfile;
+
+>>>>>>> d2540fcdf1e628a7abf0e99aa55b48d3ede8bdd1

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import studentId from '../config'; // Assuming the studentId is correctly imported
 
-function StudentTestSchedule() {
+function TestSchedule() {
     const [testSchedules, setTestSchedules] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -99,4 +99,4 @@ function StudentTestSchedule() {
     );
 }
 
-export default StudentTestSchedule;
+export default TestSchedule;

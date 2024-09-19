@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import studentId from '../config';
 
-const ViewTimetable = () => {
-  const [timetable, setTimetable] = useState(null);
+const Timetable = () => {
   const [filteredTimetable, setFilteredTimetable] = useState(null);
   const [student, setStudent] = useState(null);
 
@@ -202,4 +201,4 @@ const ViewTimetable = () => {
   );
 };
 
-export default ViewTimetable;
+export default Timetable;
