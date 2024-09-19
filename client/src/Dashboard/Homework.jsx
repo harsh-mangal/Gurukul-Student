@@ -3,7 +3,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import axios from 'axios';
 import studentId from '../config'; // Ensure this is the correct path
 
-const Last30DaysWithScroll = () => {
+const Homework = () => {
   const [last30Days, setLast30Days] = useState([]);
   const [homeworkData, setHomeworkData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -189,4 +189,4 @@ const Last30DaysWithScroll = () => {
   );
 };
 
-export default Last30DaysWithScroll;
+export default Homework;

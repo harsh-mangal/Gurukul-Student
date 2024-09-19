@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import studentId from '../config';
 
-const StudentProfile = () => {
+const ViewProfile = () => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -241,5 +240,5 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile;
+export default ViewProfile;
 

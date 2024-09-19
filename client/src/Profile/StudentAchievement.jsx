@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import studentId from '../config';
 
-const StudentAchievementsPage = () => {
+const StudentAchievement = () => {
   const [achievements, setAchievements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -83,4 +83,4 @@ const StudentAchievementsPage = () => {
   );
 };
 
-export default StudentAchievementsPage;
+export default StudentAchievement;

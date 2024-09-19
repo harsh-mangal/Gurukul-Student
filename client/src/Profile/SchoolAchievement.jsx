@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const AchievementsPage = () => {
+const SchoolAchievement = () => {
     const [achievements, setAchievements] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -70,4 +70,4 @@ const AchievementsPage = () => {
     );
 };
 
-export default AchievementsPage;
+export default SchoolAchievement;
